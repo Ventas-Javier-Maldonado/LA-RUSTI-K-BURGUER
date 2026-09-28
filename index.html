@@ -1,0 +1,3593 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color" content="#071019">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="apple-touch-icon" href="images/icons/icon-192.png">
+
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="LA RUSTI-K Food">
+
+<title>LA RUSTI-K Food | Food con actitud</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat+Brush&family=Oswald:wght@300;400;500;600;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+  --negro:#071019;
+  --negro2:#0b151e;
+  --azul:#2d72ad;
+  --azul2:#3c8dcc;
+  --amarillo:#f2c300;
+  --blanco:#f5f3ea;
+  --gris:#c7cbd0;
+  --linea:rgba(231,238,244,.22);
+  --sombra:0 18px 50px rgba(0,0,0,.45);
+  --radio:16px;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:
+    radial-gradient(circle at 20% 10%,rgba(45,114,173,.13),transparent 30%),
+    radial-gradient(circle at 85% 35%,rgba(255,193,7,.06),transparent 25%),
+    linear-gradient(135deg,#050b10,#0b151e 45%,#071019);
+
+  color:var(--blanco);
+  font-family:'Oswald',Arial,sans-serif;
+  min-height:100vh;
+}
+
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+  opacity:.12;
+
+  background-image:
+    radial-gradient(#fff 0.6px,transparent .7px),
+    radial-gradient(#fff .45px,transparent .55px);
+
+  background-size:17px 17px,29px 29px;
+  background-position:0 0,7px 11px;
+}
+
+
+/* =========================================================
+   ENCABEZADO
+   ========================================================= */
+
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+
+  height:310px;
+  overflow:hidden;
+
+  border-bottom:2px solid rgba(242,195,0,.45);
+
+  background:#050a0f;
+
+  transition:
+    height .38s ease,
+    box-shadow .38s ease;
+}
+
+.site-header:before{
+  content:"";
+  position:absolute;
+  inset:0;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(3,8,12,.88) 0%,
+      rgba(3,8,12,.42) 50%,
+      rgba(3,8,12,.82) 100%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(3,8,12,.75),
+      transparent 50%,
+      rgba(3,8,12,.35)
+    ),
+    url("images/fondo-rustik.jpg") center/cover no-repeat;
+
+  transform:scale(1.01);
+}
+
+.site-header.scrolled{
+  height:105px;
+  box-shadow:0 10px 35px rgba(0,0,0,.65);
+}
+
+.header-inner{
+  position:relative;
+  height:100%;
+  max-width:1180px;
+  margin:auto;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  padding:20px;
+
+  transition:.38s ease;
+}
+
+.logo{
+  width:min(430px,78vw);
+  max-height:190px;
+
+  object-fit:contain;
+
+  filter:drop-shadow(0 8px 18px rgba(0,0,0,.75));
+
+  transition:.38s ease;
+}
+
+.brand-fallback{
+  text-align:center;
+  display:none;
+}
+
+.brand-fallback .name{
+  font-family:'Bebas Neue',sans-serif;
+  color:var(--amarillo);
+  font-size:clamp(3rem,8vw,6rem);
+  letter-spacing:5px;
+}
+
+.brand-fallback .sub{
+  font-family:'Caveat Brush',cursive;
+  font-size:2rem;
+}
+
+.tagline{
+  margin-top:6px;
+
+  font-family:'Permanent Marker',cursive;
+  color:#fff;
+
+  font-size:clamp(1.1rem,2.2vw,1.8rem);
+
+  text-shadow:3px 3px 0 #111;
+
+  transition:.38s ease;
+}
+
+.header-actions{
+  position:absolute;
+
+  right:20px;
+  bottom:18px;
+
+  display:flex;
+  gap:9px;
+
+  transition:.38s ease;
+}
+
+.site-header.scrolled .header-inner{
+  flex-direction:row;
+  justify-content:space-between;
+  padding:8px 18px;
+}
+
+.site-header.scrolled .logo{
+  width:150px;
+  max-height:75px;
+}
+
+.site-header.scrolled .tagline{
+  display:none;
+}
+
+.site-header.scrolled .header-actions{
+  right:18px;
+  bottom:50%;
+  transform:translateY(50%);
+}
+
+.header-spacer{
+  height:310px;
+}
+
+
+/* =========================================================
+   BOTONES
+   ========================================================= */
+
+.btn{
+  border:0;
+  cursor:pointer;
+  border-radius:999px;
+  padding:11px 17px;
+
+  font-family:'Oswald',sans-serif;
+  font-weight:600;
+  letter-spacing:.5px;
+
+  transition:.2s ease;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+}
+
+.btn-blue{
+  background:var(--azul);
+  color:white;
+
+  box-shadow:0 7px 18px rgba(0,0,0,.3);
+}
+
+.btn-yellow{
+  background:var(--amarillo);
+  color:#111;
+}
+
+.btn-dark{
+  background:#111c25;
+  color:white;
+  border:1px solid var(--linea);
+}
+
+.cart-pill{
+  position:relative;
+}
+
+.cart-count{
+  position:absolute;
+
+  right:-5px;
+  top:-7px;
+
+  width:23px;
+  height:23px;
+
+  border-radius:50%;
+
+  display:grid;
+  place-items:center;
+
+  background:#e53935;
+  color:#fff;
+
+  font-size:.78rem;
+}
+
+
+/* =========================================================
+   CONTENIDO
+   ========================================================= */
+
+main{
+  position:relative;
+
+  max-width:1200px;
+  margin:auto;
+
+  padding:28px 16px 70px;
+}
+
+#menu{
+  scroll-margin-top:105px;
+}
+
+.section-title{
+  display:flex;
+  align-items:center;
+  gap:12px;
+
+  margin:24px 0 16px;
+}
+
+.section-title h2{
+  font-family:'Caveat Brush',cursive;
+
+  color:white;
+
+  font-size:clamp(2rem,4vw,3.2rem);
+
+  transform:rotate(-1deg);
+
+  text-shadow:3px 3px 0 #000;
+}
+
+.section-title span{
+  height:38px;
+  min-width:110px;
+
+  padding:5px 18px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:var(--azul);
+
+  clip-path:polygon(
+    2% 15%,
+    97% 0,
+    100% 83%,
+    3% 100%
+  );
+
+  font-family:'Caveat Brush',cursive;
+
+  font-size:1.25rem;
+}
+
+.menu-grid{
+  display:grid;
+
+  grid-template-columns:repeat(3,1fr);
+
+  gap:18px;
+}
+
+.menu-card{
+  position:relative;
+
+  overflow:hidden;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(10,20,29,.97),
+      rgba(3,10,15,.94)
+    );
+
+  border:1px solid var(--linea);
+
+  border-radius:var(--radio);
+
+  box-shadow:var(--sombra);
+
+  transition:.22s ease;
+}
+
+.menu-card:hover{
+  transform:translateY(-4px);
+
+  border-color:rgba(242,195,0,.55);
+}
+
+.food-photo{
+  width:100%;
+
+  aspect-ratio:1.55/1;
+
+  object-fit:cover;
+
+  display:block;
+
+  background:
+    radial-gradient(
+      circle,
+      #25465c 0 2px,
+      transparent 3px
+    ) 0 0/13px 13px,
+    #0b151e;
+}
+
+.food-photo.is-missing{
+  display:none;
+}
+
+.food-info{
+  padding:15px;
+}
+
+.food-name{
+  color:var(--amarillo);
+
+  font-size:1.45rem;
+  font-weight:600;
+
+  line-height:1.05;
+
+  text-transform:uppercase;
+}
+
+.food-desc{
+  color:#e4e5e7;
+
+  font-size:.96rem;
+  line-height:1.35;
+
+  margin:7px 0 12px;
+
+  min-height:2.5em;
+}
+
+.food-bottom{
+  display:flex;
+
+  align-items:center;
+  justify-content:space-between;
+
+  gap:10px;
+}
+
+.price{
+  color:white;
+
+  font-size:1.5rem;
+  font-weight:600;
+}
+
+.add-btn{
+  background:var(--azul);
+  color:#fff;
+
+  border:0;
+
+  padding:9px 14px;
+
+  border-radius:8px;
+
+  cursor:pointer;
+
+  font-family:'Oswald',sans-serif;
+  font-weight:600;
+}
+
+.add-btn:hover{
+  background:var(--azul2);
+}
+
+.note{
+  color:#d5d9dd;
+
+  font-size:.95rem;
+  line-height:1.5;
+
+  margin:14px 0;
+
+  border:1px dashed rgba(255,255,255,.28);
+
+  padding:12px;
+
+  border-radius:10px;
+}
+
+
+/* =========================================================
+   PROMOCIONES DE LA SEMANA
+   ========================================================= */
+
+.promos-section{
+  margin:0 0 30px;
+}
+
+.promos-header{
+  text-align:center;
+  margin-bottom:18px;
+}
+
+.promos-header .promo-label{
+  display:inline-block;
+
+  background:var(--amarillo);
+  color:#111;
+
+  padding:5px 20px;
+
+  font-family:'Caveat Brush',cursive;
+
+  font-size:1.25rem;
+
+  clip-path:polygon(
+    2% 15%,
+    97% 0,
+    100% 83%,
+    3% 100%
+  );
+}
+
+.promos-header h2{
+  margin-top:6px;
+
+  font-family:'Permanent Marker',cursive;
+
+  color:#fff;
+
+  font-size:clamp(2rem,5vw,3.3rem);
+
+  text-shadow:3px 3px 0 #000;
+}
+
+.promos-grid{
+  display:grid;
+
+  grid-template-columns:repeat(4,1fr);
+
+  gap:14px;
+}
+
+.promo-card{
+  position:relative;
+
+  min-height:190px;
+
+  padding:20px 15px;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  text-align:center;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(45,114,173,.28),
+      rgba(4,12,18,.97)
+    );
+
+  border:1px solid rgba(242,195,0,.45);
+
+  border-radius:16px;
+
+  box-shadow:var(--sombra);
+
+  overflow:hidden;
+
+  transition:.22s ease;
+}
+
+.promo-photo{
+  position:relative;
+  width:100%;
+  height:145px;
+  object-fit:cover;
+  display:block;
+  border-radius:12px;
+  margin-bottom:12px;
+  border:1px solid rgba(242,195,0,.35);
+  box-shadow:0 8px 20px rgba(0,0,0,.45);
+}  
+
+.promo-card:before{
+  content:"";
+
+  position:absolute;
+
+  width:150px;
+  height:150px;
+
+  border-radius:50%;
+
+  background:rgba(242,195,0,.06);
+
+  top:-70px;
+  right:-60px;
+}
+
+.promo-card:hover{
+  transform:translateY(-4px);
+
+  border-color:var(--amarillo);
+}
+
+.promo-day{
+  position:relative;
+
+  color:var(--amarillo);
+
+  font-family:'Permanent Marker',cursive;
+
+  font-size:1.45rem;
+
+  margin-bottom:8px;
+}
+
+.promo-icon{
+  position:relative;
+
+  font-size:2.2rem;
+
+  margin-bottom:7px;
+}
+
+.promo-text{
+  position:relative;
+
+  color:#fff;
+
+  font-size:1.12rem;
+
+  line-height:1.25;
+
+  font-weight:500;
+}
+
+.promo-price{
+  position:relative;
+
+  margin-top:8px;
+
+  color:var(--amarillo);
+
+  font-family:'Bebas Neue',sans-serif;
+
+  font-size:1.65rem;
+
+  letter-spacing:1px;
+}
+
+
+/* =========================================================
+   BLOQUES TIPO MENÚ
+   ========================================================= */
+
+.two-col{
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
+
+  gap:18px;
+}
+
+.simple-list{
+  background:rgba(5,12,18,.8);
+
+  border:1px solid var(--linea);
+
+  border-radius:14px;
+
+  padding:18px;
+}
+
+.list-row{
+  display:grid;
+
+  grid-template-columns:1fr auto;
+
+  gap:10px;
+
+  padding:10px 0;
+
+  border-bottom:1px dotted rgba(255,255,255,.24);
+}
+
+.list-row:last-child{
+  border-bottom:0;
+}
+
+.list-row strong{
+  color:var(--amarillo);
+
+  font-size:1.1rem;
+}
+
+.list-row small{
+  display:block;
+
+  color:#ddd;
+
+  font-size:.85rem;
+
+  line-height:1.35;
+
+  margin-top:3px;
+}
+
+
+/* =========================================================
+   PIE
+   ========================================================= */
+
+.footer{
+  background:#04090d;
+
+  border-top:2px solid rgba(242,195,0,.35);
+
+  padding:30px 16px;
+}
+
+.footer-grid{
+  max-width:1150px;
+
+  margin:auto;
+
+  display:grid;
+
+  grid-template-columns:repeat(3,1fr);
+
+  gap:20px;
+
+  text-align:center;
+}
+
+.footer-item{
+  padding:10px;
+}
+
+.footer-icon{
+  font-size:2rem;
+}
+
+.footer-item h3{
+  color:var(--amarillo);
+
+  font-size:1.2rem;
+}
+
+.footer-item p{
+  color:#ddd;
+
+  line-height:1.45;
+}
+
+
+/* =========================================================
+   CARRITO / PEDIDO
+   ========================================================= */
+
+.drawer{
+  position:fixed;
+
+  inset:0;
+
+  z-index:2000;
+
+  background:rgba(0,0,0,.72);
+
+  opacity:0;
+
+  pointer-events:none;
+
+  transition:.25s ease;
+}
+
+.drawer.open{
+  opacity:1;
+
+  pointer-events:auto;
+}
+
+.drawer-panel{
+  position:absolute;
+
+  right:0;
+  top:0;
+
+  height:100%;
+
+  width:min(520px,100%);
+
+  overflow:auto;
+
+  background:
+    linear-gradient(
+      rgba(5,12,18,.96),
+      rgba(5,12,18,.98)
+    ),
+    url("images/fondo-rustik.jpg") center/cover;
+
+  border-left:1px solid rgba(242,195,0,.35);
+
+  padding:20px;
+
+  transform:translateX(100%);
+
+  transition:.3s ease;
+}
+
+.drawer.open .drawer-panel{
+  transform:translateX(0);
+}
+
+.drawer-head{
+  display:flex;
+
+  justify-content:space-between;
+  align-items:center;
+
+  padding-bottom:14px;
+
+  border-bottom:1px solid var(--linea);
+}
+
+.drawer-head h2{
+  font-family:'Caveat Brush',cursive;
+
+  font-size:2.3rem;
+}
+
+.close{
+  width:42px;
+  height:42px;
+
+  border-radius:50%;
+
+  border:1px solid var(--linea);
+
+  background:#111b23;
+
+  color:white;
+
+  font-size:1.4rem;
+
+  cursor:pointer;
+}
+
+.cart-item{
+  display:grid;
+
+  grid-template-columns:65px 1fr auto;
+
+  gap:10px;
+
+  align-items:center;
+
+  padding:13px 0;
+
+  border-bottom:1px solid var(--linea);
+}
+
+.cart-thumb{
+  width:65px;
+  height:65px;
+
+  border-radius:8px;
+
+  object-fit:cover;
+
+  background:#172631;
+}
+
+.cart-item h4{
+  font-size:1rem;
+}
+
+.cart-item p{
+  color:#bbb;
+
+  font-size:.85rem;
+}
+
+.qty{
+  display:flex;
+
+  align-items:center;
+
+  gap:7px;
+
+  margin-top:5px;
+}
+
+.qty button{
+  width:25px;
+  height:25px;
+
+  border-radius:5px;
+
+  border:1px solid #53616b;
+
+  background:#13202a;
+
+  color:#fff;
+
+  cursor:pointer;
+}
+
+.remove{
+  color:#ff7474;
+
+  background:none;
+
+  border:0;
+
+  cursor:pointer;
+
+  font-size:.8rem;
+}
+
+.total{
+  display:flex;
+
+  justify-content:space-between;
+
+  padding:18px 0;
+
+  font-size:1.4rem;
+}
+
+.form-title{
+  margin:17px 0 10px;
+
+  color:var(--amarillo);
+
+  font-size:1.3rem;
+}
+
+.order-type{
+  display:grid;
+
+  grid-template-columns:repeat(3,1fr);
+
+  gap:7px;
+}
+
+.order-type label{
+  cursor:pointer;
+
+  background:#0e1a23;
+
+  border:1px solid var(--linea);
+
+  border-radius:9px;
+
+  padding:10px 6px;
+
+  text-align:center;
+
+  font-size:.9rem;
+}
+
+.order-type input{
+  display:none;
+}
+
+.order-type input:checked+span{
+  color:#111;
+
+  background:var(--amarillo);
+}
+
+.order-type span{
+  display:block;
+
+  border-radius:6px;
+
+  padding:7px 3px;
+}
+
+.field{
+  margin-bottom:10px;
+}
+
+.field label{
+  display:block;
+
+  color:#dce0e3;
+
+  font-size:.9rem;
+
+  margin-bottom:5px;
+}
+
+.field input,
+.field select,
+.field textarea{
+  width:100%;
+
+  border:1px solid #31404b;
+
+  background:#09131b;
+
+  color:white;
+
+  padding:12px;
+
+  border-radius:8px;
+
+  outline:none;
+
+  font:inherit;
+}
+
+.field textarea{
+  min-height:80px;
+
+  resize:vertical;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+  border-color:var(--azul2);
+}
+
+.hidden{
+  display:none!important;
+}
+
+.whatsapp-btn{
+  width:100%;
+
+  background:#20b95b;
+
+  color:white;
+
+  border:0;
+
+  border-radius:10px;
+
+  padding:14px;
+
+  font-family:'Oswald',sans-serif;
+
+  font-size:1.1rem;
+
+  font-weight:600;
+
+  cursor:pointer;
+
+  margin-top:7px;
+}
+
+.whatsapp-btn:hover{
+  filter:brightness(1.08);
+}
+
+.empty{
+  color:#aaa;
+
+  text-align:center;
+
+  padding:35px 10px;
+}
+
+
+/* =========================================================
+   MÚSICA
+   ========================================================= */
+
+.music-toggle{
+  position:fixed;
+
+  left:16px;
+  bottom:16px;
+
+  z-index:1500;
+
+  width:48px;
+  height:48px;
+
+  border-radius:50%;
+
+  border:1px solid rgba(242,195,0,.6);
+
+  background:#09131b;
+
+  color:var(--amarillo);
+
+  cursor:pointer;
+
+  box-shadow:0 10px 25px rgba(0,0,0,.45);
+}
+
+.music-toggle.playing{
+  animation:pulse 1.2s infinite;
+}
+
+@keyframes pulse{
+
+  50%{
+    box-shadow:
+      0 0 0 8px rgba(242,195,0,.08),
+      0 10px 25px rgba(0,0,0,.45);
+  }
+
+}
+
+
+/* =========================================================
+   TOAST
+   ========================================================= */
+
+.toast{
+  position:fixed;
+
+  left:50%;
+  bottom:25px;
+
+  z-index:3000;
+
+  transform:translate(-50%,20px);
+
+  background:#111d26;
+
+  color:#fff;
+
+  border:1px solid rgba(242,195,0,.4);
+
+  padding:12px 18px;
+
+  border-radius:9px;
+
+  opacity:0;
+
+  pointer-events:none;
+
+  transition:.25s ease;
+}
+
+.toast.show{
+  opacity:1;
+
+  transform:translate(-50%,0);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media(max-width:900px){
+
+  .menu-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .promos-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .two-col{
+    grid-template-columns:1fr;
+  }
+
+  :root{
+    --header-expanded:250px;
+  }
+
+  .site-header{
+    height:250px;
+  }
+
+  .header-spacer{
+    height:250px;
+  }
+}
+
+@media(max-width:620px){
+
+  :root{
+    --header-expanded:220px;
+  }
+
+  .site-header{
+    height:220px;
+  }
+
+  .header-spacer{
+    height:220px;
+  }
+
+  .site-header.scrolled{
+    height:82px;
+  }
+
+  .logo{
+    max-height:135px;
+  }
+
+  .header-actions{
+    right:12px;
+    bottom:10px;
+  }
+
+  .header-actions .btn:not(.cart-pill):not(#installBtn){
+    display:none;
+  }
+
+  .site-header.scrolled .logo{
+    width:125px;
+    max-height:60px;
+  }
+
+  .site-header.scrolled .header-actions{
+    right:10px;
+  }
+
+  #installBtn{
+    padding:9px 12px;
+    font-size:.82rem;
+  }
+
+  .menu-grid{
+    grid-template-columns:1fr;
+  }
+
+  .promos-grid{
+    grid-template-columns:1fr;
+  }
+
+  .footer-grid{
+    grid-template-columns:1fr;
+  }
+
+  main{
+    padding:20px 11px 55px;
+  }
+
+  .section-title span{
+    min-width:85px;
+  }
+
+  .order-type{
+    grid-template-columns:1fr;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+
+<!-- =========================================================
+     ENCABEZADO / PORTADA
+     ========================================================= -->
+
+<header class="site-header" id="siteHeader">
+
+  <div class="header-inner">
+
+    <img
+      class="logo"
+      src="images/logo-rustik.png"
+      alt="La Rusti-K Food"
+      onerror="this.style.display='none';document.querySelector('.brand-fallback').style.display='block'"
+    >
+
+    <div class="brand-fallback">
+
+      <div class="name">
+        LA RUSTI-K
+      </div>
+
+      <div class="sub">
+        food
+      </div>
+
+    </div>
+
+    <div class="tagline">
+      FOOD CON ACTITUD
+    </div>
+
+
+    <div class="header-actions">
+
+      <button
+        class="btn btn-dark"
+        onclick="scrollToMenu()"
+      >
+        Ver menú
+      </button>
+
+
+      <button
+        class="btn btn-blue hidden"
+        id="installBtn"
+      >
+        📲 Instalar app
+      </button>
+
+
+      <button
+        class="btn btn-yellow cart-pill"
+        onclick="openCart()"
+      >
+        🛒 Pedido
+
+        <span
+          class="cart-count"
+          id="cartCount"
+        >
+          0
+        </span>
+
+      </button>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+<div class="header-spacer"></div>
+
+
+<!-- =========================================================
+     MENÚ
+     ========================================================= -->
+
+<main id="menu">
+
+
+<!-- =========================================================
+     PROMOCIONES
+     VAN INMEDIATAMENTE DESPUÉS DE LA PORTADA
+     ========================================================= -->
+
+<section class="promos-section">
+
+  <div class="promos-header">
+
+    <div class="promo-label">
+      PROMOS
+    </div>
+
+    <h2>
+      Promociones de la semana
+    </h2>
+
+  </div>
+
+  <div class="promos-grid">
+
+    <!-- MIÉRCOLES -->
+
+    <article class="promo-card">
+
+      <img
+        class="promo-photo"
+        src="images/productos/promo-miercoles.jpg"
+        alt="Promoción miércoles - Segunda hamburguesa a mitad de precio"
+        onerror="this.style.display='none'"
+      >
+
+      <div class="promo-day">
+        MIÉRCOLES
+      </div>
+
+      <div class="promo-text">
+        Segunda hamburguesa
+        <br>
+        a mitad de precio
+      </div>
+
+    </article>
+
+
+    <!-- JUEVES -->
+
+    <article class="promo-card">
+
+      <img
+        class="promo-photo"
+        src="images/productos/promo-jueves.jpg"
+        alt="Promoción jueves - Hamburguesa más Boing"
+        onerror="this.style.display='none'"
+      >
+
+      <div class="promo-day">
+        JUEVES
+      </div>
+
+      <div class="promo-text">
+        En la compra de tu hamburguesa
+        <br>
+        + $1
+        <br>
+        llévate un Boing de lata
+      </div>
+
+    </article>
+
+
+    <!-- VIERNES -->
+
+    <article class="promo-card">
+
+      <img
+        class="promo-photo"
+        src="images/productos/promo-viernes.jpg"
+        alt="Promoción viernes - 2 smoothies más papas"
+        onerror="this.style.display='none'"
+      >
+
+      <div class="promo-day">
+        VIERNES
+      </div>
+
+      <div class="promo-text">
+        2 smoothies
+        <br>
+        + papas a la francesa
+      </div>
+
+      <div class="promo-price">
+        $150
+      </div>
+
+    </article>
+
+
+    <!-- SÁBADOS Y DOMINGOS -->
+
+    <article class="promo-card">
+
+      <img
+        class="promo-photo"
+        src="images/productos/promo-sabados-domingos.jpg"
+        alt="Promoción sábados y domingos - 2 cafés más pastel Matilda"
+        onerror="this.style.display='none'"
+      >
+
+      <div class="promo-day">
+        SÁBADOS Y DOMINGOS
+      </div>
+
+      <div class="promo-text">
+        2 cafés
+        <br>
+        + un Pastel Matilda
+      </div>
+
+      <div class="promo-price">
+        $150
+      </div>
+
+    </article>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     BURGERS
+     ========================================================= -->
+
+<div class="section-title">
+
+  <span>
+    BURGERS
+  </span>
+
+  <h2>
+    Hamburguesas
+  </h2>
+
+</div>
+
+
+<div
+  class="menu-grid"
+  id="burgers"
+></div>
+
+
+<div class="note">
+
+  <strong>
+    TODAS INCLUYEN 200 g. DE PAPA A ELEGIR:
+  </strong>
+
+  <br>
+
+  Papa ahumada gajo o papa a la francesa.
+
+  <br>
+
+  <span style="color:#f2c300">
+
+    ★ Sal con ajo &nbsp;
+
+    ★ Sal/pimienta limón &nbsp;
+
+    ★ O natural con sal de la bahía
+
+  </span>
+
+</div>
+
+
+<!-- =========================================================
+     SNACKS
+     ========================================================= -->
+
+<div class="section-title">
+
+  <span>
+    SNACKS
+  </span>
+
+  <h2>
+    Snacks
+  </h2>
+
+</div>
+
+
+<div
+  class="menu-grid"
+  id="snacks"
+></div>
+
+
+<!-- =========================================================
+     CARNES Y COSTILLAS
+     ========================================================= -->
+
+<div class="section-title">
+
+  <span>
+    CARNES
+  </span>
+
+  <h2>
+    Carnes y Costillas
+  </h2>
+
+</div>
+
+
+<div
+  class="menu-grid"
+  id="meats"
+></div>
+
+
+<!-- =========================================================
+     EXTRAS / POSTRES
+     ========================================================= -->
+
+<div class="section-title">
+
+  <span>
+    EXTRAS
+  </span>
+
+  <h2>
+    Extras
+  </h2>
+
+</div>
+
+
+<div class="two-col">
+
+
+  <div class="simple-list" id="extras"></div>
+
+
+  <div class="simple-list">
+
+    <div
+      class="section-title"
+      style="margin:0 0 10px"
+    >
+
+      <span>
+        POSTRES
+      </span>
+
+      <h2 style="font-size:2rem">
+        Postres
+      </h2>
+
+    </div>
+
+    <div id="desserts"></div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================================================
+     BEBIDAS
+     ========================================================= -->
+
+<div class="section-title">
+
+  <span>
+    DRINKS
+  </span>
+
+  <h2>
+    Bebidas
+  </h2>
+
+</div>
+
+
+<div class="two-col">
+
+
+  <div class="simple-list">
+
+    <h3
+      style="
+        color:#fff;
+        font-family:'Caveat Brush';
+        font-size:2rem;
+        margin-bottom:5px
+      "
+    >
+      Smoothies
+    </h3>
+
+    <div id="smoothies"></div>
+
+
+    <h3
+      style="
+        color:#fff;
+        font-family:'Caveat Brush';
+        font-size:2rem;
+        margin:18px 0 5px
+      "
+    >
+      Frappés
+    </h3>
+
+    <div id="frappes"></div>
+
+
+    <h3
+      style="
+        color:#fff;
+        font-family:'Caveat Brush';
+        font-size:2rem;
+        margin:18px 0 5px
+      "
+    >
+      Malteadas
+    </h3>
+
+    <div id="malteadas"></div>
+
+  </div>
+
+
+  <div class="simple-list">
+
+    <h3
+      style="
+        color:#fff;
+        font-family:'Caveat Brush';
+        font-size:2rem;
+        margin-bottom:5px
+      "
+    >
+      Coffee
+    </h3>
+
+    <div id="coffee"></div>
+
+
+    <h3
+      style="
+        color:#fff;
+        font-family:'Caveat Brush';
+        font-size:2rem;
+        margin:18px 0 5px
+      "
+    >
+      Tés
+    </h3>
+
+    <div id="tes"></div>
+
+
+    <h3
+      style="
+        color:#fff;
+        font-family:'Caveat Brush';
+        font-size:2rem;
+        margin:18px 0 5px
+      "
+    >
+      Sodas y más
+    </h3>
+
+    <div id="sodas"></div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================================================
+     ESPECIALES
+     ========================================================= -->
+
+<div class="section-title">
+
+  <span>
+    ESPECIALES
+  </span>
+
+  <h2>
+    Especiales
+  </h2>
+
+</div>
+
+
+<div
+  class="menu-grid"
+  id="specials"
+></div>
+
+
+</main>
+
+
+<!-- =========================================================
+     PIE DE PÁGINA
+     ========================================================= -->
+
+<footer class="footer">
+
+  <div class="footer-grid">
+
+
+    <div class="footer-item">
+
+      <div class="footer-icon">
+        🛵
+      </div>
+
+      <h3>
+        SERVICIO A DOMICILIO
+      </h3>
+
+      <p>
+        322 156 1298
+        <br>
+        322 384 3572
+      </p>
+
+    </div>
+
+
+    <div class="footer-item">
+
+      <div class="footer-icon">
+        📍
+      </div>
+
+      <h3>
+        UBICACIÓN
+      </h3>
+
+      <p>
+        Calle Mismaloya #528
+        <br>
+        Col. Jardines del Puerto
+        <br>
+        Puerto Vallarta, Jalisco
+      </p>
+
+    </div>
+
+
+    <div class="footer-item">
+
+      <div class="footer-icon">
+        ◷
+      </div>
+
+      <h3>
+        HORARIO
+      </h3>
+
+      <p>
+        Mié. a Dom.
+        <br>
+        De 6 PM a 11 PM
+      </p>
+
+    </div>
+
+
+  </div>
+
+</footer>
+
+
+<!-- =========================================================
+     MÚSICA
+     ========================================================= -->
+
+<audio
+  id="bgMusic"
+  loop
+  preload="none"
+>
+
+  <source
+    src="music/rustik.mp3"
+    type="audio/mpeg"
+  >
+
+</audio>
+
+
+<button
+  class="music-toggle"
+  id="musicToggle"
+  title="Activar música"
+>
+  ♫
+</button>
+
+
+<!-- =========================================================
+     CARRITO
+     ========================================================= -->
+
+<div
+  class="drawer"
+  id="drawer"
+  onclick="backdropClose(event)"
+>
+
+
+  <div class="drawer-panel">
+
+
+    <div class="drawer-head">
+
+      <h2>
+        Tu pedido
+      </h2>
+
+      <button
+        class="close"
+        onclick="closeCart()"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <div id="cartItems"></div>
+
+
+    <div
+      id="orderForm"
+      class="hidden"
+    >
+
+
+      <div class="total">
+
+        <span>
+          Total
+        </span>
+
+        <strong id="cartTotal">
+          $0
+        </strong>
+
+      </div>
+
+
+      <div class="form-title">
+        ¿Cómo quieres tu pedido?
+      </div>
+
+
+      <div class="order-type">
+
+
+        <label>
+
+          <input
+            type="radio"
+            name="orderType"
+            value="restaurant"
+            checked
+            onchange="changeOrderType()"
+          >
+
+          <span>
+            🍔 En restaurante
+          </span>
+
+        </label>
+
+
+        <label>
+
+          <input
+            type="radio"
+            name="orderType"
+            value="pickup"
+            onchange="changeOrderType()"
+          >
+
+          <span>
+            🥡 Para recoger
+          </span>
+
+        </label>
+
+
+        <label>
+
+          <input
+            type="radio"
+            name="orderType"
+            value="delivery"
+            onchange="changeOrderType()"
+          >
+
+          <span>
+            🛵 Domicilio
+          </span>
+
+        </label>
+
+
+      </div>
+
+
+      <div class="form-title">
+        Datos del cliente
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          Nombre
+        </label>
+
+        <input
+          id="customerName"
+          type="text"
+          placeholder="Tu nombre"
+        >
+
+      </div>
+
+
+      <div
+        class="field"
+        id="tableField"
+      >
+
+        <label>
+          Número de mesa
+        </label>
+
+        <input
+          id="tableNumber"
+          type="text"
+          placeholder="Ej. 8"
+        >
+
+      </div>
+
+
+      <div
+        class="field hidden"
+        id="addressField"
+      >
+
+        <label>
+          Domicilio
+        </label>
+
+        <input
+          id="address"
+          type="text"
+          placeholder="Calle, número, colonia y referencias"
+        >
+
+      </div>
+
+
+      <div
+        class="field hidden"
+        id="phoneField"
+      >
+
+        <label>
+          Teléfono
+        </label>
+
+        <input
+          id="phone"
+          type="tel"
+          placeholder="10 dígitos"
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          Tipo de pago
+        </label>
+
+        <select id="payment">
+
+          <option value="">
+            Selecciona...
+          </option>
+
+          <option>
+            Efectivo
+          </option>
+
+          <option>
+            Tarjeta
+          </option>
+
+          <option>
+            Transferencia
+          </option>
+
+          <option>
+            Terminal
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          Observaciones
+        </label>
+
+        <textarea
+          id="observations"
+          placeholder="Sin cebolla, término de carne, algún detalle del pedido, referencias, etc."
+        ></textarea>
+
+      </div>
+
+
+      <button
+        class="whatsapp-btn"
+        onclick="sendWhatsApp()"
+      >
+        📲 Enviar pedido por WhatsApp
+      </button>
+
+
+    </div>
+
+
+    <div
+      class="empty"
+      id="emptyCart"
+    >
+      Agrega algo delicioso al pedido para comenzar.
+    </div>
+
+
+  </div>
+
+</div>
+
+
+<div
+  class="toast"
+  id="toast"
+>
+  Agregado al pedido ✓
+</div>
+
+
+<script>
+
+/* ==========================================================
+   WHATSAPP
+   ========================================================== */
+
+const WHATSAPP="523221561298";
+
+
+/* ==========================================================
+   HAMBURGUESAS
+   ========================================================== */
+
+const burgers=[
+
+  {
+    name:"Double Smash",
+    price:189,
+    desc:"Doble sirloin smash, cheddar, cebolla caramelizada y salsa de la casa.",
+    img:"images/productos/double-smash.jpg"
+  },
+
+  {
+    name:"Crunch Chicken",
+    price:189,
+    desc:"Pechuga empanizada crunchy, bañada en BBQ, búfalo o mango habanero, coleslaw y aderezo chipotle miel.",
+    img:"images/productos/crunch-chicken.jpg"
+  },
+
+  {
+    name:"Costilla Ahumada",
+    price:210,
+    desc:"Costilla de cerdo ahumada, aros de cebolla, aderezo serrano y ensalada coleslaw.",
+    img:"images/productos/costilla-ahumada.jpg"
+  },
+
+  {
+    name:"Honolulu",
+    price:189,
+    desc:"Sirloin, cheddar, piña asada, tocino, jitomate, lechuga, cebolla, BBQ y mayonesa de mango habanero.",
+    img:"images/productos/honolulu.jpg"
+  },
+
+  {
+    name:"Classic Smash",
+    price:149,
+    desc:"Sirloin smash, cheddar, pepinillo, cebolla, cátsup y mostaza.",
+    img:"images/productos/classic-smash.jpg"
+  },
+
+  {
+    name:"Smash Jalapeño Popper",
+    price:189,
+    desc:"Sirloin, jalapeño popper relleno de queso cheddar, fritura de cebolla, tocino y aderezo de la casa.",
+    img:"images/productos/jalapeno-popper.jpg"
+  },
+
+  {
+    name:"Tranki",
+    price:179,
+    desc:"Sirloin, tocino, cebolla caramelizada, cátsup y aderezo de la casa.",
+    img:"images/productos/tranki.jpg"
+  }
+
+];
+
+
+/* ==========================================================
+   SNACKS
+   ========================================================== */
+
+const snacks=[
+
+  {
+    name:"Salchi Pulpos",
+    price:59,
+    desc:"200 g",
+    img:"images/productos/salchi-pulpos.jpg"
+  },
+
+  {
+    name:"Salchitacos",
+    price:59,
+    desc:"200 g",
+    img:"images/productos/salchitacos.jpg"
+  },
+
+  {
+    name:"Papas a la Francesa",
+    price:59,
+    desc:"200 g",
+    img:"images/productos/papas-francesa.jpg"
+  },
+
+  {
+    name:"Papa Ahumada Gajo",
+    price:69,
+    desc:"200 g",
+    img:"images/productos/papa-gajo.jpg"
+  },
+
+  {
+    name:"Aros de Cebolla",
+    price:79,
+    desc:"10 piezas",
+    img:"images/productos/aros-cebolla.jpg"
+  },
+
+  {
+    name:"Dedos de Queso",
+    price:79,
+    desc:"6 piezas",
+    img:"images/productos/dedos-queso.jpg"
+  },
+
+  {
+    name:"Jalapeños Popper",
+    price:89,
+    desc:"3 piezas",
+    img:"images/productos/jalapeno-pop.jpg"
+  },
+
+  {
+    name:"Boneless",
+    price:89,
+    desc:"200 g. BBQ, búfalo, mango habanero o pimiento limón (ajo, zanahoria en bastones y aderezo ranch).",
+    img:"images/productos/boneless.jpg"
+  },
+
+  {
+    name:"Alitas",
+    price:99,
+    desc:"5 piezas. BBQ, búfalo, mango habanero o pimiento limón (ajo, zanahoria en bastones y aderezo ranch).",
+    img:"images/productos/alitas.jpg"
+  },
+
+  {
+    name:"Taco Rusti Papos",
+    price:169,
+    desc:"3 piezas. Mix de chorizo y sirloin, papas a la francesa, cebolla caramelizada, aguacate del sur, aderezo serrano y tortilla de harina de la vecina.",
+    img:"images/productos/taco-rusti-papos.jpg"
+  },
+
+  {
+    name:"Rusti Dogo 1x",
+    price:45,
+    desc:"Jitomate y pepinillo en cubos, cebolla caramelizada, tocino, cátsup, aderezo chipotle miel, aderezo serrano y coronamos con germen de alfalfa.",
+    img:"images/productos/rusti-dogo.jpg"
+  }
+
+];
+
+
+/* ==========================================================
+   CARNES Y COSTILLAS
+   ========================================================== */
+
+const meats=[
+
+  {
+    name:"Costillas a la BBQ",
+    price:350,
+    desc:"Por kilo.",
+    img:"images/costillas-bbq.jpg"
+  },
+
+  {
+    name:"Papa a las brasas",
+    price:40,
+    desc:"Con aderezo serrano y cola de cebollín. Por pieza.",
+    img:"images/papa-brasas.jpg"
+  },
+
+  {
+    name:"Sirloin",
+    price:350,
+    desc:"Por kilo. Incluye tortillas, salsa, frijoles, nopal, cebollitas y papa a las brasas.",
+    img:"images/sirloin.jpg"
+  },
+
+  {
+    name:"Chorizo Corona",
+    price:40,
+    desc:"Por pieza.",
+    img:"images/chorizo.jpg"
+  },
+
+  {
+    name:"Orden Mixta",
+    price:400,
+    desc:"Sirloin y costillas.",
+    img:"images/sirloin-costilla.jpg"
+  }
+
+];
+
+
+/* ==========================================================
+   EXTRAS
+   ========================================================== */
+
+const extras=[
+
+  [
+    "Aderezos",
+    15,
+    "Ranch, chipotle miel, serrano ajo y miel mostaza."
+  ],
+
+  [
+    "Salsas",
+    15,
+    "Búfalo, BBQ, mango habanero y marinara."
+  ],
+
+  [
+    "Tocino",
+    20,
+    ""
+  ]
+
+];
+
+
+/* ==========================================================
+   POSTRES
+   ========================================================== */
+
+const desserts=[
+
+  [
+    "Cheesecake",
+    60,
+    ""
+  ],
+
+  [
+    "Pastel D’ Matilda",
+    85,
+    ""
+  ],
+
+  [
+    "Helado de Vainilla",
+    40,
+    ""
+  ],
+
+  [
+    "Affogato",
+    65,
+    ""
+  ],
+
+  [
+    "Carajillo",
+    80,
+    ""
+  ]
+
+];
+
+
+/* ==========================================================
+   SMOOTHIES
+   ========================================================== */
+
+const smoothies=[
+
+  [
+    "Fresa",
+    69,
+    ""
+  ],
+
+  [
+    "Mango",
+    69,
+    ""
+  ],
+
+  [
+    "Frutos Rojos",
+    69,
+    ""
+  ],
+
+  [
+    "Plátano",
+    69,
+    ""
+  ]
+
+];
+
+
+/* ==========================================================
+   FRAPPÉS
+   ========================================================== */
+
+const frappes=[
+
+  [
+    "Clásico",
+    69,
+    ""
+  ],
+
+  [
+    "Moka",
+    75,
+    ""
+  ],
+
+  [
+    "Mazapán",
+    75,
+    ""
+  ],
+
+  [
+    "Oreo",
+    75,
+    ""
+  ],
+
+  [
+    "Caramelo",
+    75,
+    ""
+  ]
+
+];
+
+
+/* ==========================================================
+   MALTEADAS
+   ========================================================== */
+
+const malteadas=[
+
+  [
+    "Vainilla",
+    75,
+    ""
+  ],
+
+  [
+    "Chocolate",
+    75,
+    ""
+  ],
+
+  [
+    "Caramelo",
+    75,
+    ""
+  ],
+
+  [
+    "Mazapán",
+    75,
+    ""
+  ],
+
+  [
+    "Taro",
+    75,
+    ""
+  ],
+
+  [
+    "Pumpkin Spice",
+    75,
+    ""
+  ],
+
+  [
+    "Chai",
+    75,
+    ""
+  ]
+
+];
+
+
+/* ==========================================================
+   CAFÉ
+   ========================================================== */
+
+const coffee=[
+
+  [
+    "Americano",
+    49,
+    ""
+  ],
+
+  [
+    "Espresso",
+    49,
+    ""
+  ],
+
+  [
+    "Café Latte",
+    55,
+    ""
+  ],
+
+  [
+    "Café Moka",
+    65,
+    ""
+  ],
+
+  [
+    "Cappuccino",
+    65,
+    ""
+  ],
+
+  [
+    "Chai Latte",
+    65,
+    ""
+  ]
+
+];
+
+
+/* ==========================================================
+   TÉS
+   ========================================================== */
+
+const tes=[
+
+  [
+    "Manzanilla",
+    40,
+    ""
+  ],
+
+  [
+    "Limón/Jenjibre",
+    40,
+    ""
+  ],
+
+  [
+    "Té Negro/Frutos Rojos",
+    40,
+    ""
+  ],
+
+  [
+    "Manzana/Canela",
+    40,
+    ""
+  ],
+
+  [
+    "Tizana",
+    50,
+    ""
+  ]
+
+];
+
+
+/* ==========================================================
+   SODAS
+   ========================================================== */
+
+const sodas=[
+
+  [
+    "Boing",
+    25,
+    ""
+  ],
+
+  [
+    "Coca y Pepsi",
+    35,
+    ""
+  ],
+
+  [
+    "Agua Fresca del Chavo",
+    45,
+    ""
+  ]
+
+];
+
+
+/* ==========================================================
+   ESPECIALES
+   ========================================================== */
+
+const specials=[
+
+  {
+    name:"Black Orange",
+    price:75,
+    desc:"Naranja y espresso en equilibrio perfecto, fuerte, refrescante y adictivo.",
+    img:"images/productos/black-orange.jpg"
+  },
+
+  {
+    name:"Black Tonic",
+    price:75,
+    desc:"Café fuerte, burbujas frías y un golpe amargo que despierta.",
+    img:"images/productos/black-tonic.jpg"
+  }
+
+];
+
+
+let cart=[];
+
+
+/* ==========================================================
+   UTILIDADES
+   ========================================================== */
+
+function money(n){
+
+  return "$" + Number(n).toLocaleString("es-MX");
+
+}
+
+
+/* ==========================================================
+   TARJETAS
+   ========================================================== */
+
+function foodCard(item){
+
+  return `
+
+    <article class="menu-card">
+
+      ${
+        item.img
+        ?
+        `
+        <img
+          class="food-photo"
+          src="${item.img}"
+          alt="${item.name}"
+          onerror="this.classList.add('is-missing')"
+        >
+        `
+        :
+        ``
+      }
+
+      <div class="food-info">
+
+        <div class="food-name">
+          ${item.name}
+        </div>
+
+        <div class="food-desc">
+          ${item.desc || ""}
+        </div>
+
+        <div class="food-bottom">
+
+          <span class="price">
+            ${money(item.price)}
+          </span>
+
+          <button
+            class="add-btn"
+            onclick='addToCart(${JSON.stringify(item)})'
+          >
+            + Agregar
+          </button>
+
+        </div>
+
+      </div>
+
+    </article>
+
+  `;
+
+}
+
+
+function simpleRow(x){
+
+  const item={
+    name:x[0],
+    price:x[1],
+    desc:x[2] || "",
+    img:""
+  };
+
+  return `
+
+    <div class="list-row">
+
+      <div>
+
+        <strong>
+          ${x[0]}
+        </strong>
+
+        ${
+          x[2]
+          ?
+          `
+          <small>
+            ${x[2]}
+          </small>
+          `
+          :
+          ``
+        }
+
+      </div>
+
+      <div>
+
+        <strong>
+          ${money(x[1])}
+        </strong>
+
+        <button
+          class="add-btn"
+          style="margin-left:5px;padding:5px 9px"
+          onclick='addToCart(${JSON.stringify(item)})'
+        >
+          +
+        </button>
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* ==========================================================
+   RENDER
+   ========================================================== */
+
+function renderFood(){
+
+  burgersEl.innerHTML=
+    burgers.map(foodCard).join("");
+
+  snacksEl.innerHTML=
+    snacks.map(foodCard).join("");
+
+  meatsEl.innerHTML=
+    meats.map(foodCard).join("");
+
+  specialsEl.innerHTML=
+    specials.map(foodCard).join("");
+
+  extrasEl.innerHTML=
+    extras.map(simpleRow).join("");
+
+  dessertsEl.innerHTML=
+    desserts.map(simpleRow).join("");
+
+  smoothiesEl.innerHTML=
+    smoothies.map(simpleRow).join("");
+
+  frappesEl.innerHTML=
+    frappes.map(simpleRow).join("");
+
+  malteadasEl.innerHTML=
+    malteadas.map(simpleRow).join("");
+
+  coffeeEl.innerHTML=
+    coffee.map(simpleRow).join("");
+
+  tesEl.innerHTML=
+    tes.map(simpleRow).join("");
+
+  sodasEl.innerHTML=
+    sodas.map(simpleRow).join("");
+
+}
+
+
+const burgersEl=
+  document.getElementById("burgers");
+
+const snacksEl=
+  document.getElementById("snacks");
+
+const meatsEl=
+  document.getElementById("meats");
+
+const specialsEl=
+  document.getElementById("specials");
+
+const extrasEl=
+  document.getElementById("extras");
+
+const dessertsEl=
+  document.getElementById("desserts");
+
+const smoothiesEl=
+  document.getElementById("smoothies");
+
+const frappesEl=
+  document.getElementById("frappes");
+
+const malteadasEl=
+  document.getElementById("malteadas");
+
+const coffeeEl=
+  document.getElementById("coffee");
+
+const tesEl=
+  document.getElementById("tes");
+
+const sodasEl=
+  document.getElementById("sodas");
+
+
+/* ==========================================================
+   CARRITO
+   ========================================================== */
+
+function addToCart(item){
+
+  const found=
+    cart.find(
+      x=>x.name===item.name
+    );
+
+  if(found){
+
+    found.qty++;
+
+  }else{
+
+    cart.push({
+      ...item,
+      qty:1
+    });
+
+  }
+
+  updateCart();
+
+  showToast(
+    item.name + " agregado al pedido"
+  );
+
+}
+
+
+function changeQty(i,a){
+
+  cart[i].qty+=a;
+
+  if(cart[i].qty<=0){
+
+    cart.splice(i,1);
+
+  }
+
+  updateCart();
+
+}
+
+
+function removeItem(i){
+
+  cart.splice(i,1);
+
+  updateCart();
+
+}
+
+
+function updateCart(){
+
+  const count=
+    cart.reduce(
+      (s,x)=>s+x.qty,
+      0
+    );
+
+  document.getElementById(
+    "cartCount"
+  ).textContent=count;
+
+
+  const items=
+    document.getElementById(
+      "cartItems"
+    );
+
+  const empty=
+    document.getElementById(
+      "emptyCart"
+    );
+
+  const form=
+    document.getElementById(
+      "orderForm"
+    );
+
+
+  if(!cart.length){
+
+    items.innerHTML="";
+
+    empty.classList.remove(
+      "hidden"
+    );
+
+    form.classList.add(
+      "hidden"
+    );
+
+    return;
+
+  }
+
+
+  empty.classList.add(
+    "hidden"
+  );
+
+  form.classList.remove(
+    "hidden"
+  );
+
+
+  items.innerHTML=
+    cart.map(
+      (x,i)=>`
+
+        <div class="cart-item">
+
+          ${
+            x.img
+            ?
+            `
+            <img
+              class="cart-thumb"
+              src="${x.img}"
+              onerror="this.style.visibility='hidden'"
+            >
+            `
+            :
+            `
+            <div class="cart-thumb"></div>
+            `
+          }
+
+          <div>
+
+            <h4>
+              ${x.name}
+            </h4>
+
+            <p>
+              ${money(x.price)} c/u
+            </p>
+
+            <div class="qty">
+
+              <button
+                onclick="changeQty(${i},-1)"
+              >
+                −
+              </button>
+
+              <strong>
+                ${x.qty}
+              </strong>
+
+              <button
+                onclick="changeQty(${i},1)"
+              >
+                +
+              </button>
+
+              <button
+                class="remove"
+                onclick="removeItem(${i})"
+              >
+                Eliminar
+              </button>
+
+            </div>
+
+          </div>
+
+          <strong>
+            ${money(x.price*x.qty)}
+          </strong>
+
+        </div>
+
+      `
+    ).join("");
+
+
+  document.getElementById(
+    "cartTotal"
+  ).textContent=
+    money(
+      cart.reduce(
+        (s,x)=>s+x.price*x.qty,
+        0
+      )
+    );
+
+}
+
+
+/* ==========================================================
+   ABRIR / CERRAR CARRITO
+   ========================================================== */
+
+function openCart(){
+
+  document
+    .getElementById("drawer")
+    .classList.add("open");
+
+  document.body.style.overflow=
+    "hidden";
+
+  updateCart();
+
+}
+
+
+function closeCart(){
+
+  document
+    .getElementById("drawer")
+    .classList.remove("open");
+
+  document.body.style.overflow="";
+
+}
+
+
+function backdropClose(e){
+
+  if(e.target.id==="drawer"){
+
+    closeCart();
+
+  }
+
+}
+
+
+function scrollToMenu(){
+
+  document
+    .getElementById("menu")
+    .scrollIntoView({
+      behavior:"smooth",
+      block:"start"
+    });
+
+}
+
+
+/* ==========================================================
+   TIPO DE PEDIDO
+   ========================================================== */
+
+function getOrderType(){
+
+  const x=
+    document.querySelector(
+      'input[name="orderType"]:checked'
+    );
+
+  return x
+    ?
+    x.value
+    :
+    "restaurant";
+
+}
+
+
+function changeOrderType(){
+
+  const t=
+    getOrderType();
+
+
+  document
+    .getElementById("tableField")
+    .classList
+    .toggle(
+      "hidden",
+      t!=="restaurant"
+    );
+
+
+  document
+    .getElementById("addressField")
+    .classList
+    .toggle(
+      "hidden",
+      t!=="delivery"
+    );
+
+
+  document
+    .getElementById("phoneField")
+    .classList
+    .toggle(
+      "hidden",
+      t==="restaurant"
+    );
+
+}
+
+
+/* ==========================================================
+   WHATSAPP
+   ========================================================== */
+
+function sendWhatsApp(){
+
+  if(!cart.length)
+    return;
+
+
+  const type=
+    getOrderType();
+
+  const name=
+    document
+      .getElementById("customerName")
+      .value
+      .trim();
+
+  const table=
+    document
+      .getElementById("tableNumber")
+      .value
+      .trim();
+
+  const address=
+    document
+      .getElementById("address")
+      .value
+      .trim();
+
+  const phone=
+    document
+      .getElementById("phone")
+      .value
+      .trim();
+
+  const payment=
+    document
+      .getElementById("payment")
+      .value;
+
+  const observations=
+    document
+      .getElementById("observations")
+      .value
+      .trim();
+
+
+  if(!name){
+
+    alert(
+      "Por favor escribe tu nombre."
+    );
+
+    return;
+
+  }
+
+
+  if(
+    type==="restaurant" &&
+    !table
+  ){
+
+    alert(
+      "Indica el número de mesa."
+    );
+
+    return;
+
+  }
+
+
+  if(
+    type==="delivery" &&
+    !address
+  ){
+
+    alert(
+      "Indica el domicilio."
+    );
+
+    return;
+
+  }
+
+
+  if(
+    type!=="restaurant" &&
+    !phone
+  ){
+
+    alert(
+      "Indica un teléfono."
+    );
+
+    return;
+
+  }
+
+
+  if(!payment){
+
+    alert(
+      "Selecciona el tipo de pago."
+    );
+
+    return;
+
+  }
+
+
+  const labels={
+
+    restaurant:
+      "EN RESTAURANTE",
+
+    pickup:
+      "PARA RECOGER",
+
+    delivery:
+      "A DOMICILIO"
+
+  };
+
+
+  let message=
+`🍔 *NUEVO PEDIDO - LA RUSTI-K FOOD*
+━━━━━━━━━━━━━━━━
+*Modalidad:* ${labels[type]}
+*Nombre:* ${name}
+`;
+
+
+  if(type==="restaurant"){
+
+    message+=
+      `*Mesa:* ${table}\n`;
+
+  }
+
+
+  if(type==="delivery"){
+
+    message+=
+      `*Domicilio:* ${address}\n`;
+
+    message+=
+      `*Teléfono:* ${phone}\n`;
+
+  }
+
+
+  if(type==="pickup"){
+
+    message+=
+      `*Teléfono:* ${phone}\n`;
+
+  }
+
+
+  message+=
+    `*Pago:* ${payment}\n\n`;
+
+
+  message+=
+    `*PEDIDO:*\n`;
+
+
+  cart.forEach(
+    x=>{
+
+      message+=
+        `• ${x.qty} x ${x.name} — ${money(x.price*x.qty)}\n`;
+
+    }
+  );
+
+
+  message+=
+    `\n*TOTAL: ${money(
+      cart.reduce(
+        (s,x)=>s+x.price*x.qty,
+        0
+      )
+    )}*\n`;
+
+
+  if(observations){
+
+    message+=
+      `\n*Observaciones:* ${observations}\n`;
+
+  }
+
+
+  message+=
+    `\nGracias.`;
+
+
+  window.open(
+    `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(message)}`,
+    "_blank"
+  );
+
+}
+
+
+/* ==========================================================
+   TOAST
+   ========================================================== */
+
+function showToast(text){
+
+  const t=
+    document.getElementById(
+      "toast"
+    );
+
+  t.textContent=text;
+
+  t.classList.add(
+    "show"
+  );
+
+  clearTimeout(
+    window.toastTimer
+  );
+
+  window.toastTimer=
+    setTimeout(
+      ()=>{
+        t.classList.remove(
+          "show"
+        );
+      },
+      1800
+    );
+
+}
+
+
+/* ==========================================================
+   HEADER / SCROLL
+   ========================================================== */
+
+const header=
+  document.getElementById(
+    "siteHeader"
+  );
+
+
+window.addEventListener(
+  "scroll",
+  ()=>{
+    header.classList.toggle(
+      "scrolled",
+      window.scrollY>80
+    );
+  },
+  {
+    passive:true
+  }
+);
+
+
+/* ==========================================================
+   MÚSICA
+   ========================================================== */
+
+const music=
+  document.getElementById(
+    "bgMusic"
+  );
+
+const musicBtn=
+  document.getElementById(
+    "musicToggle"
+  );
+
+
+musicBtn.addEventListener(
+  "click",
+  async ()=>{
+
+    try{
+
+      if(music.paused){
+
+        await music.play();
+
+        musicBtn.classList.add(
+          "playing"
+        );
+
+        musicBtn.textContent=
+          "🔊";
+
+        musicBtn.title=
+          "Pausar música";
+
+      }else{
+
+        music.pause();
+
+        musicBtn.classList.remove(
+          "playing"
+        );
+
+        musicBtn.textContent=
+          "♫";
+
+        musicBtn.title=
+          "Activar música";
+
+      }
+
+    }catch(e){
+
+      alert(
+        "Agrega tu archivo music/rustik.mp3 para activar la música."
+      );
+
+    }
+
+  }
+);
+
+
+/* ==========================================================
+   INSTALACIÓN COMO APP
+   ========================================================== */
+
+let deferredInstallPrompt=null;
+
+const installBtn=
+  document.getElementById(
+    "installBtn"
+  );
+
+
+window.addEventListener(
+  "beforeinstallprompt",
+  e=>{
+
+    e.preventDefault();
+
+    deferredInstallPrompt=e;
+
+    installBtn.classList.remove(
+      "hidden"
+    );
+
+  }
+);
+
+
+installBtn.addEventListener(
+  "click",
+  async ()=>{
+
+    if(!deferredInstallPrompt)
+      return;
+
+    deferredInstallPrompt.prompt();
+
+    const r=
+      await deferredInstallPrompt.userChoice;
+
+    if(
+      r.outcome==="accepted"
+    ){
+
+      installBtn.classList.add(
+        "hidden"
+      );
+
+    }
+
+    deferredInstallPrompt=null;
+
+  }
+);
+
+
+window.addEventListener(
+  "appinstalled",
+  ()=>{
+
+    installBtn.classList.add(
+      "hidden"
+    );
+
+    deferredInstallPrompt=null;
+
+    showToast(
+      "LA RUSTI-K se instaló como app ✓"
+    );
+
+  }
+);
+
+
+/* ==========================================================
+   SERVICE WORKER
+   ========================================================== */
+
+if(
+  "serviceWorker" in navigator
+){
+
+  window.addEventListener(
+    "load",
+    ()=>{
+
+      navigator.serviceWorker
+        .register("./sw.js")
+        .then(
+          r=>
+            console.log(
+              "Service Worker registrado",
+              r.scope
+            )
+        )
+        .catch(
+          e=>
+            console.error(
+              "Error Service Worker:",
+              e
+            )
+        );
+
+    }
+  );
+
+}
+
+
+/* ==========================================================
+   INICIO
+   ========================================================== */
+
+renderFood();
+
+updateCart();
+
+changeOrderType();
+
+</script>
+
+</body>
+</html>
