@@ -11,6 +11,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="LA RUSTI-K Food">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script> 
 
 <title>LA RUSTI-K Food | Food con actitud</title>
 
@@ -3577,16 +3578,264 @@ if(
 }
 
 
-/* ==========================================================
+/* =========================================================
+   SUPABASE — MENÚ DINÁMICO
+========================================================= */
+
+const SUPABASE_URL =
+  "https://pwtgnmjauhhjtxubqkqh.supabase.co";
+
+const SUPABASE_ANON_KEY =
+  "sb_publishable__A0_2nvE94huF4LMJ7K-qw_OREYX48L";
+
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_ANON_KEY
+  );
+
+
+/* =========================================================
+   CARGAR MENÚ DESDE SUPABASE
+========================================================= */
+
+async function cargarMenuSupabase(){
+
+  try{
+
+    const {
+      data,
+      error
+    } =
+      await supabaseClient
+        .from("rustik_menu_items")
+        .select("*")
+        .eq("activo",true)
+        .order("id",{ascending:true});
+
+
+    if(error){
+
+      console.error(
+        "Error cargando menú desde Supabase:",
+        error
+      );
+
+      renderFood();
+
+      return;
+
+    }
+
+
+    if(!data || !data.length){
+
+      console.warn(
+        "Supabase no devolvió productos. Se conserva menú local."
+      );
+
+      renderFood();
+
+      return;
+
+    }
+
+
+    const burgersDB =
+      data
+        .filter(p => p.seccion === "burgers")
+        .map(p => ({
+          name:p.nombre,
+          price:Number(p.precio),
+          desc:p.descripcion || "",
+          img:p.imagen || ""
+        }));
+
+
+    const snacksDB =
+      data
+        .filter(p => p.seccion === "snacks")
+        .map(p => ({
+          name:p.nombre,
+          price:Number(p.precio),
+          desc:p.descripcion || "",
+          img:p.imagen || ""
+        }));
+
+
+    const meatsDB =
+      data
+        .filter(p => p.seccion === "meats")
+        .map(p => ({
+          name:p.nombre,
+          price:Number(p.precio),
+          desc:p.descripcion || "",
+          img:p.imagen || ""
+        }));
+
+
+    const specialsDB =
+      data
+        .filter(p => p.seccion === "specials")
+        .map(p => ({
+          name:p.nombre,
+          price:Number(p.precio),
+          desc:p.descripcion || "",
+          img:p.imagen || ""
+        }));
+
+
+    const extrasDB =
+      data
+        .filter(p => p.seccion === "extras")
+        .map(p => [
+          p.nombre,
+          Number(p.precio),
+          p.descripcion || ""
+        ]);
+
+
+    const dessertsDB =
+      data
+        .filter(p => p.seccion === "desserts")
+        .map(p => [
+          p.nombre,
+          Number(p.precio),
+          p.descripcion || ""
+        ]);
+
+
+    const smoothiesDB =
+      data
+        .filter(p => p.seccion === "smoothies")
+        .map(p => [
+          p.nombre,
+          Number(p.precio),
+          p.descripcion || ""
+        ]);
+
+
+    const frappesDB =
+      data
+        .filter(p => p.seccion === "frappes")
+        .map(p => [
+          p.nombre,
+          Number(p.precio),
+          p.descripcion || ""
+        ]);
+
+
+    const malteadasDB =
+      data
+        .filter(p => p.seccion === "malteadas")
+        .map(p => [
+          p.nombre,
+          Number(p.precio),
+          p.descripcion || ""
+        ]);
+
+
+    const coffeeDB =
+      data
+        .filter(p => p.seccion === "coffee")
+        .map(p => [
+          p.nombre,
+          Number(p.precio),
+          p.descripcion || ""
+        ]);
+
+
+    const tesDB =
+      data
+        .filter(p => p.seccion === "tes")
+        .map(p => [
+          p.nombre,
+          Number(p.precio),
+          p.descripcion || ""
+        ]);
+
+
+    const sodasDB =
+      data
+        .filter(p => p.seccion === "sodas")
+        .map(p => [
+          p.nombre,
+          Number(p.precio),
+          p.descripcion || ""
+        ]);
+
+
+    burgers.length = 0;
+    burgers.push(...burgersDB);
+
+    snacks.length = 0;
+    snacks.push(...snacksDB);
+
+    meats.length = 0;
+    meats.push(...meatsDB);
+
+    specials.length = 0;
+    specials.push(...specialsDB);
+
+    extras.length = 0;
+    extras.push(...extrasDB);
+
+    desserts.length = 0;
+    desserts.push(...dessertsDB);
+
+    smoothies.length = 0;
+    smoothies.push(...smoothiesDB);
+
+    frappes.length = 0;
+    frappes.push(...frappesDB);
+
+    malteadas.length = 0;
+    malteadas.push(...malteadasDB);
+
+    coffee.length = 0;
+    coffee.push(...coffeeDB);
+
+    tes.length = 0;
+    tes.push(...tesDB);
+
+    sodas.length = 0;
+    sodas.push(...sodasDB);
+
+
+    renderFood();
+
+    console.log(
+      "Menú cargado desde Supabase:",
+      data.length,
+      "productos"
+    );
+
+  }
+  catch(error){
+
+    console.error(
+      "Error inesperado cargando menú:",
+      error
+    );
+
+    renderFood();
+
+  }
+
+}
+
+
+/* =========================================================
    INICIO
-   ========================================================== */
+========================================================= */
 
 renderFood();
+
+cargarMenuSupabase();
 
 updateCart();
 
 changeOrderType();
-
 </script>
 
 </body>
