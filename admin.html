@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 
 <meta charset="UTF-8">
@@ -11,27 +12,13 @@
 
 <meta name="theme-color" content="#071019">
 
-<title>LA RUSTI-K | Administración</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-
-<link
-  rel="preconnect"
-  href="https://fonts.gstatic.com"
-  crossorigin
->
-
-<link
-  href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat+Brush&family=Oswald:wght@300;400;500;600;700&display=swap"
-  rel="stylesheet"
->
+<title>LA RUSTI-K | Administrador</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 
 :root{
-
   --negro:#071019;
   --negro2:#0b151e;
   --azul:#2d72ad;
@@ -39,15 +26,11 @@
   --amarillo:#f2c300;
   --blanco:#f5f3ea;
   --gris:#c7cbd0;
-  --rojo:#d94b4b;
-  --verde:#3aa76d;
-
-  --linea:rgba(231,238,244,.16);
-
+  --rojo:#d9534f;
+  --verde:#36b37e;
+  --linea:rgba(231,238,244,.15);
   --sombra:0 18px 50px rgba(0,0,0,.45);
-
   --radio:16px;
-
 }
 
 *{
@@ -55,36 +38,16 @@
 }
 
 body{
-
   margin:0;
-
   background:
     radial-gradient(
       circle at top,
-      rgba(45,114,173,.22),
-      transparent 35%
-    ),
-    linear-gradient(
-      180deg,
-      #071019,
-      #050b10
+      #132536 0%,
+      var(--negro) 55%
     );
-
   color:var(--blanco);
-
-  font-family:'Oswald',sans-serif;
-
+  font-family:Arial,Helvetica,sans-serif;
   min-height:100vh;
-
-}
-
-button,
-input,
-textarea,
-select{
-
-  font:inherit;
-
 }
 
 
@@ -92,203 +55,118 @@ select{
    LOGIN
 ========================================================= */
 
-#loginView{
-
+#pantallaLogin{
   min-height:100vh;
-
   display:flex;
-
   align-items:center;
-
   justify-content:center;
-
-  padding:24px;
-
+  padding:20px;
 }
 
 .login-box{
-
   width:100%;
-
   max-width:430px;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(18,32,43,.97),
-      rgba(7,16,25,.97)
-    );
-
+  background:rgba(11,21,30,.96);
   border:1px solid var(--linea);
-
   border-radius:24px;
-
-  padding:32px 24px;
-
+  padding:30px;
   box-shadow:var(--sombra);
+}
 
+.login-logo{
   text-align:center;
-
+  margin-bottom:25px;
 }
 
-.logo-admin{
-
-  width:92px;
-
-  height:92px;
-
-  object-fit:contain;
-
-  margin-bottom:12px;
-
+.login-logo img{
+  width:170px;
+  max-width:80%;
 }
 
-.login-title{
-
-  font-family:'Bebas Neue',sans-serif;
-
-  font-size:42px;
-
+.login-logo h1{
+  margin:15px 0 5px;
+  font-size:30px;
   letter-spacing:1px;
+}
 
+.login-logo p{
   margin:0;
-
-}
-
-.login-subtitle{
-
-  color:var(--amarillo);
-
-  font-family:'Caveat Brush',cursive;
-
-  font-size:24px;
-
-  margin:0 0 25px;
-
-}
-
-.form-group{
-
-  text-align:left;
-
-  margin-bottom:16px;
-
-}
-
-.form-group label{
-
-  display:block;
-
-  margin-bottom:7px;
-
   color:var(--gris);
+}
 
+label{
+  display:block;
+  margin:14px 0 7px;
+  color:var(--gris);
   font-size:14px;
-
+  font-weight:bold;
 }
 
 input,
-textarea,
-select{
-
+select,
+textarea{
   width:100%;
-
-  border:1px solid rgba(255,255,255,.12);
-
-  background:#101c26;
-
-  color:white;
-
-  border-radius:12px;
-
-  padding:13px 14px;
-
+  border:none;
   outline:none;
-
-}
-
-input:focus,
-textarea:focus,
-select:focus{
-
-  border-color:var(--azul2);
-
+  background:#111f2b;
+  color:var(--blanco);
+  border:1px solid var(--linea);
+  border-radius:12px;
+  padding:13px 14px;
+  font-size:15px;
 }
 
 textarea{
-
-  min-height:90px;
-
+  min-height:100px;
   resize:vertical;
-
 }
 
-.btn{
+input:focus,
+select:focus,
+textarea:focus{
+  border-color:var(--azul2);
+}
 
-  width:100%;
-
+button{
   border:none;
-
-  border-radius:13px;
-
-  padding:14px 18px;
-
   cursor:pointer;
-
-  font-weight:700;
-
-  transition:.2s;
-
+  font-weight:bold;
 }
 
-.btn:hover{
-
-  transform:translateY(-1px);
-
-}
-
-.btn-primary{
-
+.btn-principal{
+  width:100%;
   background:var(--amarillo);
-
   color:#111;
-
+  padding:14px;
+  border-radius:12px;
+  margin-top:20px;
+  font-size:16px;
 }
 
-.btn-blue{
-
-  background:var(--azul);
-
-  color:white;
-
+.btn-principal:hover{
+  filter:brightness(1.08);
 }
 
-.btn-danger{
-
-  background:var(--rojo);
-
-  color:white;
-
-}
-
-.btn-success{
-
-  background:var(--verde);
-
-  color:white;
-
-}
-
-.error{
-
+.mensaje{
   margin-top:15px;
-
-  color:#ff7777;
-
+  padding:12px;
+  border-radius:10px;
+  display:none;
   font-size:14px;
+}
 
-  min-height:20px;
+.mensaje.error{
+  display:block;
+  background:rgba(217,83,79,.15);
+  color:#ffaaa6;
+  border:1px solid rgba(217,83,79,.3);
+}
 
+.mensaje.ok{
+  display:block;
+  background:rgba(54,179,126,.15);
+  color:#8ce2ba;
+  border:1px solid rgba(54,179,126,.3);
 }
 
 
@@ -296,135 +174,68 @@ textarea{
    ADMIN
 ========================================================= */
 
-#adminView{
-
+#pantallaAdmin{
   display:none;
-
-  min-height:100vh;
-
 }
 
 .topbar{
-
   position:sticky;
-
   top:0;
-
-  z-index:20;
-
-  background:rgba(7,16,25,.95);
-
+  z-index:50;
+  background:rgba(7,16,25,.96);
   backdrop-filter:blur(12px);
-
   border-bottom:1px solid var(--linea);
-
-  padding:15px;
-
+  padding:15px 20px;
 }
 
 .topbar-inner{
-
-  max-width:1100px;
-
+  max-width:1200px;
   margin:auto;
-
   display:flex;
-
+  align-items:center;
   justify-content:space-between;
-
-  align-items:center;
-
   gap:15px;
-
 }
 
-.brand{
-
+.marca{
   display:flex;
-
   align-items:center;
-
   gap:12px;
-
 }
 
-.brand img{
-
-  width:48px;
-
-  height:48px;
-
-  object-fit:contain;
-
+.marca-icono{
+  width:42px;
+  height:42px;
+  border-radius:12px;
+  background:var(--amarillo);
+  color:#111;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
 }
 
-.brand-title{
-
-  font-family:'Bebas Neue',sans-serif;
-
-  font-size:28px;
-
-  line-height:1;
-
-}
-
-.brand-sub{
-
-  color:var(--amarillo);
-
-  font-size:13px;
-
-}
-
-.logout{
-
-  width:auto;
-
-  padding:10px 15px;
-
-  background:#182632;
-
-  color:white;
-
-}
-
-
-/* =========================================================
-   CONTENEDOR
-========================================================= */
-
-.container{
-
-  max-width:1100px;
-
-  margin:auto;
-
-  padding:25px 15px 50px;
-
-}
-
-.page-title{
-
-  margin-bottom:22px;
-
-}
-
-.page-title h1{
-
-  font-family:'Bebas Neue',sans-serif;
-
-  font-size:38px;
-
+.marca h1{
   margin:0;
-
+  font-size:20px;
 }
 
-.page-title p{
-
+.marca small{
   color:var(--gris);
+}
 
-  margin:5px 0 0;
+.btn-salir{
+  background:#182936;
+  color:var(--blanco);
+  padding:10px 14px;
+  border-radius:10px;
+}
 
+.contenedor{
+  width:100%;
+  max-width:1200px;
+  margin:auto;
+  padding:25px 18px 50px;
 }
 
 
@@ -433,396 +244,304 @@ textarea{
 ========================================================= */
 
 .panel{
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(15,29,40,.96),
-      rgba(8,17,25,.96)
-    );
-
+  background:rgba(11,21,30,.94);
   border:1px solid var(--linea);
-
   border-radius:20px;
-
-  padding:20px;
-
+  padding:22px;
   box-shadow:var(--sombra);
-
   margin-bottom:25px;
-
 }
 
-.panel-title{
-
-  font-family:'Bebas Neue',sans-serif;
-
-  font-size:27px;
-
-  margin:0 0 18px;
-
-  color:var(--amarillo);
-
+.panel h2{
+  margin:0 0 5px;
+  font-size:24px;
 }
 
-.grid{
+.panel-subtitulo{
+  margin:0 0 20px;
+  color:var(--gris);
+  font-size:14px;
+}
 
+.grid-form{
   display:grid;
-
   grid-template-columns:
     repeat(2,minmax(0,1fr));
-
-  gap:15px;
-
+  gap:5px 18px;
 }
 
-.full{
-
-  grid-column:1 / -1;
-
-}
-
-.actions{
-
-  display:flex;
-
-  gap:10px;
-
-  flex-wrap:wrap;
-
-  margin-top:15px;
-
-}
-
-.actions .btn{
-
-  width:auto;
-
-}
-
-.hidden{
-
-  display:none !important;
-
+.campo-completo{
+  grid-column:1/-1;
 }
 
 
 /* =========================================================
-   PRODUCTOS
+   IMAGEN
 ========================================================= */
 
-.list-header{
-
-  display:flex;
-
-  justify-content:space-between;
-
-  align-items:center;
-
-  gap:15px;
-
-  margin-bottom:15px;
-
+.imagen-editor{
+  margin-top:8px;
 }
 
-.list-header h2{
-
-  font-family:'Bebas Neue',sans-serif;
-
-  font-size:30px;
-
-  margin:0;
-
-}
-
-.count{
-
+.input-file{
+  display:block;
+  width:100%;
+  padding:14px;
+  border:2px dashed rgba(242,195,0,.35);
+  border-radius:14px;
+  background:#0e1b25;
   color:var(--gris);
-
-  font-size:14px;
-
-}
-
-.products{
-
-  display:grid;
-
-  gap:12px;
-
-}
-
-.product{
-
-  display:flex;
-
-  align-items:center;
-
-  gap:15px;
-
-  background:#0d1a24;
-
-  border:1px solid var(--linea);
-
-  border-radius:16px;
-
-  padding:13px;
-
-}
-
-.product.inactive{
-
-  opacity:.5;
-
-}
-
-.product-image{
-
-  width:82px;
-
-  height:82px;
-
-  flex:0 0 82px;
-
-  border-radius:12px;
-
-  object-fit:cover;
-
-  background:#111;
-
-}
-
-.no-image{
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  color:#777;
-
-  font-size:11px;
-
-  text-align:center;
-
-}
-
-.product-info{
-
-  flex:1;
-
-  min-width:0;
-
-}
-
-.product-name{
-
-  font-family:'Bebas Neue',sans-serif;
-
-  font-size:24px;
-
-  line-height:1;
-
-}
-
-.product-section{
-
-  display:inline-block;
-
-  margin-top:5px;
-
-  color:var(--amarillo);
-
-  font-size:12px;
-
-  text-transform:uppercase;
-
-}
-
-.product-description{
-
-  color:var(--gris);
-
-  font-size:13px;
-
-  margin-top:5px;
-
-}
-
-.product-price{
-
-  color:white;
-
-  font-size:20px;
-
-  font-weight:700;
-
-  margin-top:7px;
-
-}
-
-.product-actions{
-
-  display:flex;
-
-  flex-direction:column;
-
-  gap:7px;
-
-  width:115px;
-
-}
-
-.product-actions button{
-
-  border:none;
-
-  border-radius:9px;
-
-  padding:8px 10px;
-
   cursor:pointer;
+  text-align:center;
+}
 
+.input-file:hover{
+  border-color:var(--amarillo);
+}
+
+.input-file input{
+  display:none;
+}
+
+.preview-box{
+  margin-top:15px;
+  display:none;
+}
+
+.preview-box img{
+  width:180px;
+  height:180px;
+  object-fit:cover;
+  border-radius:15px;
+  border:1px solid var(--linea);
+  display:block;
+}
+
+.preview-info{
+  margin-top:8px;
+  color:var(--gris);
+  font-size:12px;
+}
+
+.imagen-actual{
+  margin-top:15px;
+  display:none;
+}
+
+.imagen-actual img{
+  width:120px;
+  height:120px;
+  object-fit:cover;
+  border-radius:12px;
+  border:1px solid var(--linea);
+}
+
+.imagen-actual p{
+  margin:7px 0 0;
+  color:var(--gris);
+  font-size:12px;
+}
+
+.botones-form{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:20px;
+}
+
+.btn-guardar{
+  background:var(--amarillo);
+  color:#111;
+  padding:13px 20px;
+  border-radius:11px;
+}
+
+.btn-cancelar{
+  background:#263746;
   color:white;
-
-  font-size:13px;
-
-}
-
-.edit{
-
-  background:var(--azul);
-
-}
-
-.toggle{
-
-  background:#33424d;
-
-}
-
-.delete{
-
-  background:var(--rojo);
-
+  padding:13px 20px;
+  border-radius:11px;
+  display:none;
 }
 
 
 /* =========================================================
-   MENSAJES
+   LISTADO
 ========================================================= */
 
-.status{
+.lista-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  flex-wrap:wrap;
+  margin-bottom:18px;
+}
 
-  position:fixed;
+.lista-header h2{
+  margin:0;
+}
 
-  left:50%;
+.contador{
+  color:var(--gris);
+  font-size:14px;
+}
 
-  bottom:22px;
+.filtros{
+  display:grid;
+  grid-template-columns:
+    1fr 220px;
+  gap:12px;
+  margin-bottom:20px;
+}
 
-  transform:
-    translateX(-50%)
-    translateY(120px);
+.productos{
+  display:grid;
+  grid-template-columns:
+    repeat(auto-fill,minmax(280px,1fr));
+  gap:15px;
+}
 
-  z-index:100;
-
-  background:#111d27;
-
+.producto{
+  background:#0d1a24;
   border:1px solid var(--linea);
-
-  border-radius:12px;
-
-  padding:13px 18px;
-
-  box-shadow:var(--sombra);
-
-  transition:.25s;
-
-  opacity:0;
-
+  border-radius:16px;
+  overflow:hidden;
 }
 
-.status.show{
-
-  transform:
-    translateX(-50%)
-    translateY(0);
-
-  opacity:1;
-
+.producto.inactivo{
+  opacity:.55;
 }
 
-.status.success{
-
-  border-color:rgba(58,167,109,.6);
-
+.producto-img{
+  width:100%;
+  height:190px;
+  background:#09131c;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
-.status.error{
+.producto-img img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
 
-  border-color:rgba(217,75,75,.6);
+.sin-imagen{
+  color:#6e7881;
+  font-size:13px;
+}
 
+.producto-contenido{
+  padding:15px;
+}
+
+.producto-seccion{
+  color:var(--amarillo);
+  font-size:11px;
+  font-weight:bold;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+.producto-nombre{
+  margin:5px 0;
+  font-size:19px;
+}
+
+.producto-precio{
+  font-size:20px;
+  font-weight:bold;
+  color:var(--amarillo);
+}
+
+.producto-desc{
+  color:var(--gris);
+  font-size:13px;
+  line-height:1.45;
+  margin:8px 0 14px;
+}
+
+.estado{
+  display:inline-block;
+  padding:5px 8px;
+  border-radius:7px;
+  font-size:11px;
+  font-weight:bold;
+  margin-bottom:12px;
+}
+
+.estado.activo{
+  background:rgba(54,179,126,.15);
+  color:#80ddb4;
+}
+
+.estado.inactivo{
+  background:rgba(217,83,79,.15);
+  color:#ffaaa6;
+}
+
+.acciones{
+  display:grid;
+  grid-template-columns:
+    1fr 1fr;
+  gap:8px;
+}
+
+.btn-editar{
+  background:var(--azul);
+  color:white;
+  padding:10px;
+  border-radius:9px;
+}
+
+.btn-toggle{
+  background:#263746;
+  color:white;
+  padding:10px;
+  border-radius:9px;
+}
+
+.btn-eliminar{
+  grid-column:1/-1;
+  background:rgba(217,83,79,.16);
+  color:#ffaaa6;
+  padding:10px;
+  border-radius:9px;
+}
+
+.cargando{
+  text-align:center;
+  color:var(--gris);
+  padding:40px;
 }
 
 
 /* =========================================================
-   MOBILE
+   RESPONSIVE
 ========================================================= */
 
 @media(max-width:700px){
 
-  .grid{
-
+  .grid-form{
     grid-template-columns:1fr;
-
   }
 
-  .full{
-
+  .campo-completo{
     grid-column:auto;
+  }
 
+  .filtros{
+    grid-template-columns:1fr;
   }
 
   .topbar-inner{
-
     align-items:flex-start;
-
   }
 
-  .product{
-
-    align-items:flex-start;
-
-  }
-
-  .product-image{
-
-    width:65px;
-
-    height:65px;
-
-    flex-basis:65px;
-
-  }
-
-  .product-actions{
-
-    width:90px;
-
-  }
-
-  .product-actions button{
-
-    font-size:11px;
-
-    padding:7px 5px;
-
-  }
-
-  .product-name{
-
-    font-size:20px;
-
+  .marca h1{
+    font-size:17px;
   }
 
 }
@@ -834,74 +553,67 @@ textarea{
 <body>
 
 
-<!-- =========================================================
+<!-- =====================================================
      LOGIN
-========================================================= -->
+===================================================== -->
 
-<section id="loginView">
+<section id="pantallaLogin">
 
   <div class="login-box">
 
-    <img
-      src="images/logo-rustik.png"
-      class="logo-admin"
-      alt="LA RUSTI-K"
-    >
+    <div class="login-logo">
 
-    <h1 class="login-title">
-      LA RUSTI-K
-    </h1>
+      <img
+        src="images/logo-rustik.png"
+        alt="LA RUSTI-K"
+      >
 
-    <div class="login-subtitle">
-      Administración
+      <h1>ADMINISTRADOR</h1>
+
+      <p>Control del menú</p>
+
     </div>
 
-    <form id="loginForm">
 
-      <div class="form-group">
+    <form id="formLogin">
 
-        <label>
-          Correo electrónico
-        </label>
+      <label for="loginEmail">
+        Correo electrónico
+      </label>
 
-        <input
-          type="email"
-          id="email"
-          required
-          autocomplete="email"
-          placeholder="admin@larustik.com"
-        >
+      <input
+        id="loginEmail"
+        type="email"
+        autocomplete="email"
+        required
+      >
 
-      </div>
 
-      <div class="form-group">
+      <label for="loginPassword">
+        Contraseña
+      </label>
 
-        <label>
-          Contraseña
-        </label>
+      <input
+        id="loginPassword"
+        type="password"
+        autocomplete="current-password"
+        required
+      >
 
-        <input
-          type="password"
-          id="password"
-          required
-          autocomplete="current-password"
-          placeholder="••••••••"
-        >
-
-      </div>
 
       <button
+        class="btn-principal"
         type="submit"
-        class="btn btn-primary"
       >
         ENTRAR COMO ADMINISTRADOR
       </button>
 
     </form>
 
+
     <div
-      id="loginError"
-      class="error"
+      id="mensajeLogin"
+      class="mensaje"
     ></div>
 
   </div>
@@ -909,40 +621,42 @@ textarea{
 </section>
 
 
-<!-- =========================================================
-     ADMIN
-========================================================= -->
 
-<section id="adminView">
+<!-- =====================================================
+     ADMIN
+===================================================== -->
+
+<section id="pantallaAdmin">
+
 
   <header class="topbar">
 
     <div class="topbar-inner">
 
-      <div class="brand">
+      <div class="marca">
 
-        <img
-          src="images/logo-rustik.png"
-          alt="LA RUSTI-K"
-        >
+        <div class="marca-icono">
+          RK
+        </div>
 
         <div>
 
-          <div class="brand-title">
+          <h1>
             LA RUSTI-K
-          </div>
+          </h1>
 
-          <div class="brand-sub">
-            Panel de administración
-          </div>
+          <small>
+            Administrador de menú
+          </small>
 
         </div>
 
       </div>
 
+
       <button
-        class="btn logout"
-        id="logoutBtn"
+        class="btn-salir"
+        id="btnSalir"
       >
         CERRAR SESIÓN
       </button>
@@ -952,50 +666,43 @@ textarea{
   </header>
 
 
-  <main class="container">
 
-    <div class="page-title">
-
-      <h1>
-        MENÚ
-      </h1>
-
-      <p>
-        Administra los productos que aparecen en LA RUSTI-K Food.
-      </p>
-
-    </div>
+  <main class="contenedor">
 
 
-    <!-- =====================================================
+    <!-- =================================================
          FORMULARIO
-    ====================================================== -->
+    ================================================== -->
 
     <section class="panel">
 
-      <h2
-        class="panel-title"
-        id="formTitle"
-      >
-        AGREGAR PRODUCTO
+      <h2 id="tituloFormulario">
+        Agregar producto
       </h2>
 
-      <form id="productForm">
+      <p class="panel-subtitulo">
+        Agrega o modifica cualquier producto del menú.
+      </p>
 
-        <input
-          type="hidden"
-          id="productId"
-        >
 
-        <div class="grid">
+      <form id="formProducto">
 
-          <div class="form-group">
 
-            <label>
+        <div class="grid-form">
+
+
+          <!-- SECCIÓN -->
+
+          <div>
+
+            <label for="productoSeccion">
               Sección
             </label>
 
-            <select id="seccion" required>
+            <select
+              id="productoSeccion"
+              required
+            >
 
               <option value="burgers">
                 Burgers
@@ -1006,7 +713,7 @@ textarea{
               </option>
 
               <option value="meats">
-                Carnes y Costillas
+                Carnes
               </option>
 
               <option value="extras">
@@ -1050,113 +757,190 @@ textarea{
           </div>
 
 
-          <div class="form-group">
+          <!-- NOMBRE -->
 
-            <label>
-              Nombre del producto
+          <div>
+
+            <label for="productoNombre">
+              Nombre
             </label>
 
             <input
+              id="productoNombre"
               type="text"
-              id="nombre"
               required
-              placeholder="Ej. Double Smash"
             >
 
           </div>
 
 
-          <div class="form-group">
+          <!-- PRECIO -->
 
-            <label>
+          <div>
+
+            <label for="productoPrecio">
               Precio
             </label>
 
             <input
+              id="productoPrecio"
               type="number"
-              id="precio"
               min="0"
               step="0.01"
               required
-              placeholder="189"
             >
 
           </div>
 
 
-          <div class="form-group">
+          <!-- DESCRIPCIÓN -->
 
-            <label>
-              Ruta de imagen
-            </label>
+          <div class="campo-completo">
 
-            <input
-              type="text"
-              id="imagen"
-              placeholder="images/productos/double-smash.jpg"
-            >
-
-          </div>
-
-
-          <div class="form-group full">
-
-            <label>
+            <label for="productoDescripcion">
               Descripción
             </label>
 
             <textarea
-              id="descripcion"
+              id="productoDescripcion"
               placeholder="Descripción del producto..."
             ></textarea>
+
+          </div>
+
+
+          <!-- IMAGEN -->
+
+          <div class="campo-completo">
+
+            <label>
+              Fotografía del producto
+            </label>
+
+            <div class="imagen-editor">
+
+
+              <label class="input-file">
+
+                📷
+                <strong>
+                  SELECCIONAR IMAGEN
+                </strong>
+
+                <br>
+
+                <span>
+                  Toca aquí para elegir una foto de tu galería
+                </span>
+
+                <input
+                  id="productoImagen"
+                  type="file"
+                  accept="image/*"
+                >
+
+              </label>
+
+
+              <!-- IMAGEN NUEVA -->
+
+              <div
+                class="preview-box"
+                id="previewBox"
+              >
+
+                <img
+                  id="previewImagen"
+                  alt="Vista previa"
+                >
+
+                <div
+                  class="preview-info"
+                  id="previewInfo"
+                ></div>
+
+              </div>
+
+
+              <!-- IMAGEN ACTUAL -->
+
+              <div
+                class="imagen-actual"
+                id="imagenActual"
+              >
+
+                <strong>
+                  Imagen actual
+                </strong>
+
+                <br>
+
+                <img
+                  id="imagenActualImg"
+                  alt="Imagen actual"
+                >
+
+                <p id="imagenActualTexto"></p>
+
+              </div>
+
+            </div>
 
           </div>
 
         </div>
 
 
-        <div class="actions">
+        <div class="botones-form">
 
           <button
+            class="btn-guardar"
+            id="btnGuardar"
             type="submit"
-            class="btn btn-primary"
-            id="saveBtn"
           >
             GUARDAR PRODUCTO
           </button>
 
+
           <button
+            class="btn-cancelar"
+            id="btnCancelar"
             type="button"
-            class="btn btn-blue hidden"
-            id="cancelBtn"
           >
             CANCELAR EDICIÓN
           </button>
 
         </div>
 
+
+        <div
+          id="mensajeProducto"
+          class="mensaje"
+        ></div>
+
       </form>
 
     </section>
 
 
-    <!-- =====================================================
-         LISTA
-    ====================================================== -->
+
+    <!-- =================================================
+         LISTADO
+    ================================================== -->
 
     <section class="panel">
 
-      <div class="list-header">
+      <div class="lista-header">
 
         <div>
 
           <h2>
-            PRODUCTOS
+            Menú actual
           </h2>
 
           <div
-            class="count"
-            id="productCount"
+            class="contador"
+            id="contadorProductos"
           >
             Cargando...
           </div>
@@ -1165,10 +949,85 @@ textarea{
 
       </div>
 
+
+      <div class="filtros">
+
+        <input
+          id="buscarProducto"
+          type="search"
+          placeholder="Buscar producto..."
+        >
+
+
+        <select id="filtroSeccion">
+
+          <option value="">
+            Todas las secciones
+          </option>
+
+          <option value="burgers">
+            Burgers
+          </option>
+
+          <option value="snacks">
+            Snacks
+          </option>
+
+          <option value="meats">
+            Carnes
+          </option>
+
+          <option value="extras">
+            Extras
+          </option>
+
+          <option value="desserts">
+            Postres
+          </option>
+
+          <option value="smoothies">
+            Smoothies
+          </option>
+
+          <option value="frappes">
+            Frappés
+          </option>
+
+          <option value="malteadas">
+            Malteadas
+          </option>
+
+          <option value="coffee">
+            Coffee
+          </option>
+
+          <option value="tes">
+            Tés
+          </option>
+
+          <option value="sodas">
+            Sodas
+          </option>
+
+          <option value="specials">
+            Especiales
+          </option>
+
+        </select>
+
+      </div>
+
+
       <div
-        class="products"
-        id="productsList"
-      ></div>
+        class="productos"
+        id="listaProductos"
+      >
+
+        <div class="cargando">
+          Cargando productos...
+        </div>
+
+      </div>
 
     </section>
 
@@ -1176,11 +1035,6 @@ textarea{
 
 </section>
 
-
-<div
-  id="status"
-  class="status"
-></div>
 
 
 <script>
@@ -1203,85 +1057,102 @@ const supabaseClient =
 
 
 /* =========================================================
-   ELEMENTOS
+   VARIABLES
 ========================================================= */
 
-const loginView =
-  document.getElementById("loginView");
+let productos = [];
 
-const adminView =
-  document.getElementById("adminView");
+let productoEditando = null;
 
-const loginForm =
-  document.getElementById("loginForm");
-
-const loginError =
-  document.getElementById("loginError");
-
-const logoutBtn =
-  document.getElementById("logoutBtn");
-
-const productForm =
-  document.getElementById("productForm");
-
-const productId =
-  document.getElementById("productId");
-
-const seccion =
-  document.getElementById("seccion");
-
-const nombre =
-  document.getElementById("nombre");
-
-const precio =
-  document.getElementById("precio");
-
-const descripcion =
-  document.getElementById("descripcion");
-
-const imagen =
-  document.getElementById("imagen");
-
-const productsList =
-  document.getElementById("productsList");
-
-const productCount =
-  document.getElementById("productCount");
-
-const formTitle =
-  document.getElementById("formTitle");
-
-const saveBtn =
-  document.getElementById("saveBtn");
-
-const cancelBtn =
-  document.getElementById("cancelBtn");
-
-const statusBox =
-  document.getElementById("status");
+let archivoImagenSeleccionado = null;
 
 
 /* =========================================================
-   MENSAJE
+   ELEMENTOS
 ========================================================= */
 
-function mostrarMensaje(
-  mensaje,
-  tipo="success"
-){
+const pantallaLogin =
+  document.getElementById("pantallaLogin");
 
-  statusBox.textContent =
-    mensaje;
+const pantallaAdmin =
+  document.getElementById("pantallaAdmin");
 
-  statusBox.className =
-    "status show " + tipo;
+const formLogin =
+  document.getElementById("formLogin");
 
-  setTimeout(()=>{
+const mensajeLogin =
+  document.getElementById("mensajeLogin");
 
-    statusBox.className =
-      "status";
+const formProducto =
+  document.getElementById("formProducto");
 
-  },3000);
+const mensajeProducto =
+  document.getElementById("mensajeProducto");
+
+const listaProductos =
+  document.getElementById("listaProductos");
+
+const contadorProductos =
+  document.getElementById("contadorProductos");
+
+const buscarProducto =
+  document.getElementById("buscarProducto");
+
+const filtroSeccion =
+  document.getElementById("filtroSeccion");
+
+const productoImagen =
+  document.getElementById("productoImagen");
+
+const previewBox =
+  document.getElementById("previewBox");
+
+const previewImagen =
+  document.getElementById("previewImagen");
+
+const previewInfo =
+  document.getElementById("previewInfo");
+
+const imagenActual =
+  document.getElementById("imagenActual");
+
+const imagenActualImg =
+  document.getElementById("imagenActualImg");
+
+const imagenActualTexto =
+  document.getElementById("imagenActualTexto");
+
+const btnGuardar =
+  document.getElementById("btnGuardar");
+
+const btnCancelar =
+  document.getElementById("btnCancelar");
+
+const tituloFormulario =
+  document.getElementById("tituloFormulario");
+
+
+/* =========================================================
+   MENSAJES
+========================================================= */
+
+function mostrarMensaje(elemento,texto,tipo){
+
+  elemento.className =
+    "mensaje " + tipo;
+
+  elemento.textContent =
+    texto;
+
+}
+
+function ocultarMensaje(elemento){
+
+  elemento.className =
+    "mensaje";
+
+  elemento.textContent =
+    "";
 
 }
 
@@ -1290,48 +1161,43 @@ function mostrarMensaje(
    LOGIN
 ========================================================= */
 
-loginForm.addEventListener(
+formLogin.addEventListener(
   "submit",
   async function(e){
 
     e.preventDefault();
 
-    loginError.textContent =
-      "";
+    ocultarMensaje(mensajeLogin);
 
     const email =
-      document
-        .getElementById("email")
-        .value
-        .trim();
+      document.getElementById(
+        "loginEmail"
+      ).value.trim();
 
     const password =
-      document
-        .getElementById("password")
-        .value;
+      document.getElementById(
+        "loginPassword"
+      ).value;
 
-    const {
-      data,
-      error
-    } =
-      await supabaseClient.auth
-        .signInWithPassword({
-          email,
-          password
-        });
+    const { error } =
+      await supabaseClient.auth.signInWithPassword({
+        email,
+        password
+      });
 
     if(error){
 
-      console.error(error);
-
-      loginError.textContent =
-        "Correo o contraseña incorrectos.";
+      mostrarMensaje(
+        mensajeLogin,
+        error.message,
+        "error"
+      );
 
       return;
 
     }
 
-    mostrarAdmin();
+    await mostrarAdministrador();
 
   }
 );
@@ -1344,17 +1210,15 @@ loginForm.addEventListener(
 async function comprobarSesion(){
 
   const {
-    data
+    data:{
+      session
+    }
   } =
-    await supabaseClient.auth
-      .getSession();
+    await supabaseClient.auth.getSession();
 
-  if(
-    data &&
-    data.session
-  ){
+  if(session){
 
-    mostrarAdmin();
+    await mostrarAdministrador();
 
   }else{
 
@@ -1367,42 +1231,44 @@ async function comprobarSesion(){
 
 function mostrarLogin(){
 
-  loginView.style.display =
+  pantallaLogin.style.display =
     "flex";
 
-  adminView.style.display =
+  pantallaAdmin.style.display =
     "none";
 
 }
 
 
-function mostrarAdmin(){
+async function mostrarAdministrador(){
 
-  loginView.style.display =
+  pantallaLogin.style.display =
     "none";
 
-  adminView.style.display =
+  pantallaAdmin.style.display =
     "block";
 
-  cargarProductos();
+  await cargarProductos();
 
 }
 
 
 /* =========================================================
-   LOGOUT
+   CERRAR SESIÓN
 ========================================================= */
 
-logoutBtn.addEventListener(
-  "click",
-  async function(){
+document
+  .getElementById("btnSalir")
+  .addEventListener(
+    "click",
+    async function(){
 
-    await supabaseClient.auth.signOut();
+      await supabaseClient.auth.signOut();
 
-    mostrarLogin();
+      mostrarLogin();
 
-  }
-);
+    }
+  );
 
 
 /* =========================================================
@@ -1411,8 +1277,8 @@ logoutBtn.addEventListener(
 
 async function cargarProductos(){
 
-  productsList.innerHTML =
-    "<p>Cargando productos...</p>";
+  listaProductos.innerHTML =
+    '<div class="cargando">Cargando productos...</div>';
 
   const {
     data,
@@ -1421,179 +1287,185 @@ async function cargarProductos(){
     await supabaseClient
       .from("rustik_menu_items")
       .select("*")
-      .order(
-        "id",
-        {
-          ascending:true
-        }
-      );
+      .order("id",{ascending:true});
 
   if(error){
 
+    listaProductos.innerHTML =
+      '<div class="cargando">Error al cargar productos.</div>';
+
     console.error(error);
 
-    productsList.innerHTML =
-      "<p>No se pudieron cargar los productos.</p>";
-
-    productCount.textContent =
-      "Error";
-
     return;
 
   }
 
-  productCount.textContent =
-    data.length +
-    " producto" +
-    (
-      data.length === 1
-        ? ""
-        : "s"
+  productos =
+    data || [];
+
+  renderProductos();
+
+}
+
+
+/* =========================================================
+   RENDER PRODUCTOS
+========================================================= */
+
+function renderProductos(){
+
+  const texto =
+    buscarProducto.value
+      .trim()
+      .toLowerCase();
+
+  const seccion =
+    filtroSeccion.value;
+
+  const filtrados =
+    productos.filter(
+      producto => {
+
+        const coincideTexto =
+          !texto ||
+          producto.nombre
+            .toLowerCase()
+            .includes(texto) ||
+          (producto.descripcion || "")
+            .toLowerCase()
+            .includes(texto);
+
+        const coincideSeccion =
+          !seccion ||
+          producto.seccion === seccion;
+
+        return (
+          coincideTexto &&
+          coincideSeccion
+        );
+
+      }
     );
 
-  if(!data.length){
+  contadorProductos.textContent =
+    `${filtrados.length} producto(s) mostrado(s) · ${productos.length} total`;
 
-    productsList.innerHTML = `
 
-      <p style="
-        color:#c7cbd0;
-        text-align:center;
-        padding:25px;
-      ">
+  if(!filtrados.length){
 
-        Todavía no hay productos.
-        <br>
-        Agrega el primero arriba.
-
-      </p>
-
-    `;
+    listaProductos.innerHTML =
+      '<div class="cargando">No se encontraron productos.</div>';
 
     return;
 
   }
 
-  productsList.innerHTML =
-    data
-      .map(producto =>
-        crearProductoHTML(producto)
-      )
+
+  listaProductos.innerHTML =
+    filtrados
+      .map(productoCard)
       .join("");
 
 }
 
 
 /* =========================================================
-   HTML PRODUCTO
+   TARJETA
 ========================================================= */
 
-function crearProductoHTML(
-  producto
-){
+function productoCard(producto){
 
-  const imagenHTML =
+  const imagen =
     producto.imagen
       ? `
-
         <img
-          class="product-image"
-          src="${escapeHTML(producto.imagen)}"
-          alt="${escapeHTML(producto.nombre)}"
-          onerror="this.outerHTML='<div class=&quot;product-image no-image&quot;>SIN IMAGEN</div>'"
+          src="${escapeHtml(producto.imagen)}"
+          alt="${escapeHtml(producto.nombre)}"
+          onerror="this.style.display='none';this.parentElement.innerHTML='<div class=&quot;sin-imagen&quot;>Imagen no disponible</div>';"
         >
-
       `
-      : `
-
-        <div class="product-image no-image">
-          SIN IMAGEN
+      :
+      `
+        <div class="sin-imagen">
+          Sin imagen
         </div>
+      `;
 
+
+  const estado =
+    producto.activo
+      ?
+      `
+        <span class="estado activo">
+          ACTIVO
+        </span>
+      `
+      :
+      `
+        <span class="estado inactivo">
+          INACTIVO
+        </span>
       `;
 
 
   return `
 
     <article
-      class="product ${
-        producto.activo
-          ? ""
-          : "inactive"
-      }"
+      class="producto ${producto.activo ? "" : "inactivo"}"
     >
 
-      ${imagenHTML}
-
-      <div class="product-info">
-
-        <div class="product-name">
-
-          ${escapeHTML(producto.nombre)}
-
-        </div>
-
-        <div class="product-section">
-
-          ${escapeHTML(producto.seccion)}
-
-        </div>
-
-        <div class="product-description">
-
-          ${
-            escapeHTML(
-              producto.descripcion || ""
-            )
-          }
-
-        </div>
-
-        <div class="product-price">
-
-          $${Number(producto.precio).toFixed(2)}
-
-        </div>
-
+      <div class="producto-img">
+        ${imagen}
       </div>
 
 
-      <div class="product-actions">
+      <div class="producto-contenido">
 
-        <button
-          class="edit"
-          onclick="editarProducto(${producto.id})"
-        >
-          EDITAR
-        </button>
+        <div class="producto-seccion">
+          ${escapeHtml(producto.seccion)}
+        </div>
 
-        <button
-          class="toggle"
-          onclick="
-            cambiarEstado(
-              ${producto.id},
-              ${producto.activo}
-            )
-          "
-        >
+        <div class="producto-nombre">
+          ${escapeHtml(producto.nombre)}
+        </div>
 
-          ${
-            producto.activo
-              ? "DESACTIVAR"
-              : "ACTIVAR"
-          }
+        <div class="producto-precio">
+          $${Number(producto.precio).toFixed(2)}
+        </div>
 
-        </button>
+        <div class="producto-desc">
+          ${escapeHtml(producto.descripcion || "")}
+        </div>
 
-        <button
-          class="delete"
-          onclick="
-            eliminarProducto(
-              ${producto.id}
-            )
-          "
-        >
-          ELIMINAR
-        </button>
+        ${estado}
+
+
+        <div class="acciones">
+
+          <button
+            class="btn-editar"
+            onclick="editarProducto(${producto.id})"
+          >
+            EDITAR
+          </button>
+
+
+          <button
+            class="btn-toggle"
+            onclick="cambiarActivo(${producto.id})"
+          >
+            ${producto.activo ? "DESACTIVAR" : "ACTIVAR"}
+          </button>
+
+
+          <button
+            class="btn-eliminar"
+            onclick="eliminarProducto(${producto.id})"
+          >
+            ELIMINAR PRODUCTO
+          </button>
+
+        </div>
 
       </div>
 
@@ -1605,12 +1477,10 @@ function crearProductoHTML(
 
 
 /* =========================================================
-   ESCAPE HTML
+   ESCAPAR HTML
 ========================================================= */
 
-function escapeHTML(
-  valor
-){
+function escapeHtml(valor){
 
   return String(valor ?? "")
     .replace(/&/g,"&amp;")
@@ -1623,45 +1493,187 @@ function escapeHTML(
 
 
 /* =========================================================
-   AGREGAR / EDITAR
+   SELECCIONAR IMAGEN
 ========================================================= */
 
-productForm.addEventListener(
+productoImagen.addEventListener(
+  "change",
+  function(){
+
+    const archivo =
+      this.files[0];
+
+    if(!archivo){
+
+      archivoImagenSeleccionado =
+        null;
+
+      previewBox.style.display =
+        "none";
+
+      return;
+
+    }
+
+
+    if(!archivo.type.startsWith("image/")){
+
+      mostrarMensaje(
+        mensajeProducto,
+        "Selecciona una imagen válida.",
+        "error"
+      );
+
+      this.value =
+        "";
+
+      return;
+
+    }
+
+
+    archivoImagenSeleccionado =
+      archivo;
+
+
+    const lector =
+      new FileReader();
+
+
+    lector.onload =
+      function(e){
+
+        previewImagen.src =
+          e.target.result;
+
+        previewInfo.textContent =
+          `${archivo.name} · ${(archivo.size / 1024 / 1024).toFixed(2)} MB`;
+
+        previewBox.style.display =
+          "block";
+
+      };
+
+
+    lector.readAsDataURL(archivo);
+
+  }
+);
+
+
+/* =========================================================
+   SUBIR IMAGEN
+========================================================= */
+
+async function subirImagen(archivo){
+
+  if(!archivo){
+
+    return null;
+
+  }
+
+
+  const extension =
+    archivo.name
+      .split(".")
+      .pop()
+      .toLowerCase();
+
+
+  const nombreSeguro =
+    "producto-" +
+    Date.now() +
+    "-" +
+    Math.random()
+      .toString(36)
+      .substring(2,8) +
+    "." +
+    extension;
+
+
+  const ruta =
+    nombreSeguro;
+
+
+  const {
+    error:uploadError
+  } =
+    await supabaseClient
+      .storage
+      .from("rustik-menu")
+      .upload(
+        ruta,
+        archivo,
+        {
+          cacheControl:"3600",
+          upsert:false
+        }
+      );
+
+
+  if(uploadError){
+
+    throw uploadError;
+
+  }
+
+
+  const {
+    data
+  } =
+    supabaseClient
+      .storage
+      .from("rustik-menu")
+      .getPublicUrl(ruta);
+
+
+  return data.publicUrl;
+
+}
+
+
+/* =========================================================
+   GUARDAR PRODUCTO
+========================================================= */
+
+formProducto.addEventListener(
   "submit",
   async function(e){
 
     e.preventDefault();
 
-    const id =
-      productId.value;
-
-    const producto = {
-
-      seccion:
-        seccion.value,
-
-      nombre:
-        nombre.value.trim(),
-
-      precio:
-        Number(precio.value),
-
-      descripcion:
-        descripcion.value.trim(),
-
-      imagen:
-        imagen.value.trim()
-
-    };
+    ocultarMensaje(mensajeProducto);
 
 
-    if(
-      !producto.nombre ||
-      Number.isNaN(producto.precio)
-    ){
+    const seccion =
+      document.getElementById(
+        "productoSeccion"
+      ).value;
+
+    const nombre =
+      document.getElementById(
+        "productoNombre"
+      ).value.trim();
+
+    const precio =
+      Number(
+        document.getElementById(
+          "productoPrecio"
+        ).value
+      );
+
+    const descripcion =
+      document.getElementById(
+        "productoDescripcion"
+      ).value.trim();
+
+
+    if(!nombre){
 
       mostrarMensaje(
-        "Completa nombre y precio.",
+        mensajeProducto,
+        "Escribe el nombre del producto.",
         "error"
       );
 
@@ -1670,74 +1682,178 @@ productForm.addEventListener(
     }
 
 
-    saveBtn.disabled =
-      true;
-
-    saveBtn.textContent =
-      "GUARDANDO...";
-
-
-    let resultado;
-
-
-    if(id){
-
-      resultado =
-        await supabaseClient
-          .from("rustik_menu_items")
-          .update(producto)
-          .eq(
-            "id",
-            id
-          );
-
-    }else{
-
-      resultado =
-        await supabaseClient
-          .from("rustik_menu_items")
-          .insert({
-
-            ...producto,
-
-            activo:true
-
-          });
-
-    }
-
-
-    if(resultado.error){
-
-      console.error(
-        resultado.error
-      );
+    if(isNaN(precio) || precio < 0){
 
       mostrarMensaje(
-        "No se pudo guardar el producto.",
+        mensajeProducto,
+        "Escribe un precio válido.",
         "error"
       );
 
-    }else{
-
-      mostrarMensaje(
-        id
-          ? "Producto actualizado."
-          : "Producto agregado."
-      );
-
-      limpiarFormulario();
-
-      cargarProductos();
+      return;
 
     }
 
 
-    saveBtn.disabled =
-      false;
+    btnGuardar.disabled =
+      true;
 
-    saveBtn.textContent =
-      "GUARDAR PRODUCTO";
+    btnGuardar.textContent =
+      "GUARDANDO...";
+
+
+    try{
+
+      let imagenURL = null;
+
+
+      /* ---------------------------------------------
+         SI HAY IMAGEN NUEVA
+      --------------------------------------------- */
+
+      if(archivoImagenSeleccionado){
+
+        mostrarMensaje(
+          mensajeProducto,
+          "Subiendo fotografía...",
+          "ok"
+        );
+
+
+        imagenURL =
+          await subirImagen(
+            archivoImagenSeleccionado
+          );
+
+      }
+
+
+      /* ---------------------------------------------
+         EDITAR
+      --------------------------------------------- */
+
+      if(productoEditando){
+
+        const datosActualizacion = {
+
+          seccion,
+          nombre,
+          precio,
+          descripcion
+
+        };
+
+
+        if(imagenURL){
+
+          datosActualizacion.imagen =
+            imagenURL;
+
+        }
+
+
+        const {
+          error
+        } =
+          await supabaseClient
+            .from("rustik_menu_items")
+            .update(
+              datosActualizacion
+            )
+            .eq(
+              "id",
+              productoEditando.id
+            );
+
+
+        if(error){
+
+          throw error;
+
+        }
+
+
+        mostrarMensaje(
+          mensajeProducto,
+          "Producto actualizado correctamente.",
+          "ok"
+        );
+
+      }
+
+      /* ---------------------------------------------
+         NUEVO PRODUCTO
+      --------------------------------------------- */
+
+      else{
+
+        const nuevoProducto = {
+
+          seccion,
+          nombre,
+          precio,
+          descripcion,
+          imagen:
+            imagenURL || "",
+          activo:true
+
+        };
+
+
+        const {
+          error
+        } =
+          await supabaseClient
+            .from("rustik_menu_items")
+            .insert(
+              nuevoProducto
+            );
+
+
+        if(error){
+
+          throw error;
+
+        }
+
+
+        mostrarMensaje(
+          mensajeProducto,
+          "Producto agregado correctamente.",
+          "ok"
+        );
+
+      }
+
+
+      limpiarFormulario();
+
+      await cargarProductos();
+
+    }
+    catch(error){
+
+      console.error(error);
+
+      mostrarMensaje(
+        mensajeProducto,
+        "No se pudo guardar el producto: " +
+        error.message,
+        "error"
+      );
+
+    }
+    finally{
+
+      btnGuardar.disabled =
+        false;
+
+      btnGuardar.textContent =
+        productoEditando
+          ? "GUARDAR CAMBIOS"
+          : "GUARDAR PRODUCTO";
+
+    }
 
   }
 );
@@ -1747,66 +1863,92 @@ productForm.addEventListener(
    EDITAR PRODUCTO
 ========================================================= */
 
-async function editarProducto(
-  id
-){
+function editarProducto(id){
 
-  const {
-    data,
-    error
-  } =
-    await supabaseClient
-      .from("rustik_menu_items")
-      .select("*")
-      .eq(
-        "id",
-        id
-      )
-      .single();
-
-
-  if(error){
-
-    console.error(error);
-
-    mostrarMensaje(
-      "No se pudo cargar el producto.",
-      "error"
+  const producto =
+    productos.find(
+      p => Number(p.id) === Number(id)
     );
+
+
+  if(!producto){
 
     return;
 
   }
 
 
-  productId.value =
-    data.id;
-
-  seccion.value =
-    data.seccion;
-
-  nombre.value =
-    data.nombre;
-
-  precio.value =
-    data.precio;
-
-  descripcion.value =
-    data.descripcion || "";
-
-  imagen.value =
-    data.imagen || "";
+  productoEditando =
+    producto;
 
 
-  formTitle.textContent =
-    "EDITAR PRODUCTO";
+  document.getElementById(
+    "productoSeccion"
+  ).value =
+    producto.seccion;
 
-  saveBtn.textContent =
-    "ACTUALIZAR PRODUCTO";
 
-  cancelBtn.classList.remove(
-    "hidden"
-  );
+  document.getElementById(
+    "productoNombre"
+  ).value =
+    producto.nombre;
+
+
+  document.getElementById(
+    "productoPrecio"
+  ).value =
+    producto.precio;
+
+
+  document.getElementById(
+    "productoDescripcion"
+  ).value =
+    producto.descripcion || "";
+
+
+  /* ---------------------------------------------
+     IMAGEN ACTUAL
+  --------------------------------------------- */
+
+  if(producto.imagen){
+
+    imagenActual.style.display =
+      "block";
+
+    imagenActualImg.src =
+      producto.imagen;
+
+    imagenActualTexto.textContent =
+      "Si seleccionas una nueva foto, reemplazará esta imagen.";
+
+  }else{
+
+    imagenActual.style.display =
+      "none";
+
+  }
+
+
+  archivoImagenSeleccionado =
+    null;
+
+  productoImagen.value =
+    "";
+
+  previewBox.style.display =
+    "none";
+
+
+  tituloFormulario.textContent =
+    "Editar producto";
+
+
+  btnGuardar.textContent =
+    "GUARDAR CAMBIOS";
+
+
+  btnCancelar.style.display =
+    "block";
 
 
   window.scrollTo({
@@ -1821,31 +1963,47 @@ async function editarProducto(
    CANCELAR EDICIÓN
 ========================================================= */
 
-cancelBtn.addEventListener(
+btnCancelar.addEventListener(
   "click",
-  limpiarFormulario
+  function(){
+
+    limpiarFormulario();
+
+  }
 );
 
 
+/* =========================================================
+   LIMPIAR FORMULARIO
+========================================================= */
+
 function limpiarFormulario(){
 
-  productForm.reset();
+  productoEditando =
+    null;
 
-  productId.value =
+  archivoImagenSeleccionado =
+    null;
+
+  formProducto.reset();
+
+  productoImagen.value =
     "";
 
-  seccion.value =
-    "burgers";
+  previewBox.style.display =
+    "none";
 
-  formTitle.textContent =
-    "AGREGAR PRODUCTO";
+  imagenActual.style.display =
+    "none";
 
-  saveBtn.textContent =
+  tituloFormulario.textContent =
+    "Agregar producto";
+
+  btnGuardar.textContent =
     "GUARDAR PRODUCTO";
 
-  cancelBtn.classList.add(
-    "hidden"
-  );
+  btnCancelar.style.display =
+    "none";
 
 }
 
@@ -1854,10 +2012,24 @@ function limpiarFormulario(){
    ACTIVAR / DESACTIVAR
 ========================================================= */
 
-async function cambiarEstado(
-  id,
-  estadoActual
-){
+async function cambiarActivo(id){
+
+  const producto =
+    productos.find(
+      p => Number(p.id) === Number(id)
+    );
+
+
+  if(!producto){
+
+    return;
+
+  }
+
+
+  const nuevoEstado =
+    !producto.activo;
+
 
   const {
     error
@@ -1865,10 +2037,7 @@ async function cambiarEstado(
     await supabaseClient
       .from("rustik_menu_items")
       .update({
-
-        activo:
-          !estadoActual
-
+        activo:nuevoEstado
       })
       .eq(
         "id",
@@ -1878,11 +2047,9 @@ async function cambiarEstado(
 
   if(error){
 
-    console.error(error);
-
-    mostrarMensaje(
-      "No se pudo cambiar el estado.",
-      "error"
+    alert(
+      "No se pudo cambiar el estado:\n" +
+      error.message
     );
 
     return;
@@ -1890,28 +2057,33 @@ async function cambiarEstado(
   }
 
 
-  mostrarMensaje(
-    estadoActual
-      ? "Producto desactivado."
-      : "Producto activado."
-  );
-
-  cargarProductos();
+  await cargarProductos();
 
 }
 
 
 /* =========================================================
-   ELIMINAR
+   ELIMINAR PRODUCTO
 ========================================================= */
 
-async function eliminarProducto(
-  id
-){
+async function eliminarProducto(id){
+
+  const producto =
+    productos.find(
+      p => Number(p.id) === Number(id)
+    );
+
+
+  if(!producto){
+
+    return;
+
+  }
+
 
   const confirmar =
     confirm(
-      "¿Seguro que quieres eliminar este producto?"
+      `¿Eliminar "${producto.nombre}"?\n\nEsta acción no se puede deshacer.`
     );
 
 
@@ -1936,11 +2108,9 @@ async function eliminarProducto(
 
   if(error){
 
-    console.error(error);
-
-    mostrarMensaje(
-      "No se pudo eliminar el producto.",
-      "error"
+    alert(
+      "No se pudo eliminar:\n" +
+      error.message
     );
 
     return;
@@ -1948,13 +2118,24 @@ async function eliminarProducto(
   }
 
 
-  mostrarMensaje(
-    "Producto eliminado."
-  );
-
-  cargarProductos();
+  await cargarProductos();
 
 }
+
+
+/* =========================================================
+   BUSCAR
+========================================================= */
+
+buscarProducto.addEventListener(
+  "input",
+  renderProductos
+);
+
+filtroSeccion.addEventListener(
+  "change",
+  renderProductos
+);
 
 
 /* =========================================================
@@ -1966,4 +2147,5 @@ comprobarSesion();
 </script>
 
 </body>
+
 </html>
